@@ -144,6 +144,53 @@ strong { color: var(--ink); }
 
 .capsules.home .capsule { font-size: 1.02rem; padding: 14px 24px; }
 
+/* ---------- homepage xl capsules: real two-tone pill look ---------- */
+.capsule-xl-row {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin: 12px 0 8px;
+}
+
+.capsule-xl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 260px;
+  border-radius: 60px;
+  border: 2px solid var(--cream);
+  background: #050b09;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.capsule-xl:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); text-decoration: none; }
+
+.capsule-xl-title {
+  width: 100%;
+  text-align: center;
+  padding: 30px 22px 18px;
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: var(--teal);
+}
+.capsule-xl-sep { width: 70%; height: 1px; background: var(--cream); opacity: 0.35; }
+.capsule-xl-sub {
+  width: 100%;
+  text-align: center;
+  padding: 16px 20px 26px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--teal-deep);
+  opacity: 0.85;
+}
+
+@media (max-width: 720px) {
+  .capsule-xl { width: 100%; max-width: 320px; }
+}
+
 .section-tag {
   display: inline-block; font-size: 0.74rem; font-weight: 700;
   color: var(--teal); background: var(--accent-soft);
