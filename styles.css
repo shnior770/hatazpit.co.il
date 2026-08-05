@@ -224,12 +224,13 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
 
 .capsule-xl-row {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: stretch;
   gap: 18px;
   flex-wrap: nowrap;
   margin: 12px 0 8px;
 }
+.hero .capsule-xl-row { justify-content: center; }
 
 .capsule-xl {
   display: flex;
