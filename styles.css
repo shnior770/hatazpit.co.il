@@ -391,5 +391,20 @@ footer.site .wrap {
 }
 footer.site .wrap span:last-child { display: none; }
 
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+.back-btn:hover { color: var(--cream); border-color: var(--teal); text-decoration: none; }
+.back-btn.top { margin-bottom: 8px; }
+.back-btn.bottom { margin-top: 48px; }
+
 .closing-line { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); }
 .closing-line em { color: var(--ink-soft); }
