@@ -58,7 +58,10 @@ nav.links a:hover { color: var(--cream); }
     radial-gradient(700px 320px at 15% -10%, rgba(47,214,192,0.18), transparent),
     radial-gradient(600px 300px at 100% 0%, rgba(245,178,60,0.10), transparent),
     var(--bg);
-  padding: 76px 0 64px;
+  min-height: 74vh;
+  display: flex;
+  align-items: center;
+  padding: 40px 0;
 }
 .hero .wrap { max-width: 1040px; }
 .hero-line-1 {
@@ -98,24 +101,25 @@ nav.links a:hover { color: var(--cream); }
   text-align: right;
 }
 .k-title {
-  font-size: 5.7rem;
-  line-height: 1.02;
+  font-size: 4.2rem;
+  line-height: 1.08;
   font-weight: 700;
   color: var(--cream);
-  margin: 0 0 14px;
+  margin: 0 0 10px;
   letter-spacing: -0.02em;
   white-space: nowrap;
 }
 .k-subtitle {
   width: 100%;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
+  font-weight: 500;
   color: var(--ink-soft);
   margin: 0;
   white-space: nowrap;
 }
 @media (max-width: 900px) {
-  .k-title { font-size: 2.6rem; white-space: normal; }
-  .k-subtitle { font-size: 1.1rem; white-space: normal; }
+  .k-title { font-size: 2.4rem; white-space: normal; }
+  .k-subtitle { font-size: 1.2rem; white-space: normal; }
 }
 
 /* ---------- main content ---------- */
@@ -189,12 +193,14 @@ strong { color: var(--ink); }
 .capsules.home .capsule { font-size: 1.02rem; padding: 14px 24px; }
 
 /* ---------- homepage xl capsules: real two-tone pill look ---------- */
+main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index: 2; }
+
 .capsule-xl-row {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 28px;
-  flex-wrap: wrap;
+  gap: 18px;
+  flex-wrap: nowrap;
   margin: 12px 0 8px;
 }
 
@@ -202,7 +208,8 @@ strong { color: var(--ink); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 390px;
+  width: 280px;
+  flex-shrink: 1;
   border-radius: 999px;
   border: 3px solid var(--cream);
   background: #050b09;
@@ -215,8 +222,8 @@ strong { color: var(--ink); }
 .capsule-xl-title {
   width: 100%;
   text-align: center;
-  padding: 45px 33px 27px;
-  font-size: 1.77rem;
+  padding: 32px 20px 18px;
+  font-size: 1.28rem;
   font-weight: 700;
   color: var(--teal);
 }
@@ -224,15 +231,17 @@ strong { color: var(--ink); }
 .capsule-xl-sub {
   width: 100%;
   text-align: center;
-  padding: 24px 30px 39px;
-  font-size: 1.35rem;
+  padding: 16px 18px 26px;
+  font-size: 0.95rem;
   font-weight: 500;
   color: var(--teal-deep);
   opacity: 0.85;
 }
 
 @media (max-width: 720px) {
-  .capsule-xl { width: 100%; max-width: 390px; }
+  main.wide:has(.capsule-xl-row) { margin-top: 0; }
+  .capsule-xl-row { flex-wrap: wrap; }
+  .capsule-xl { width: 100%; max-width: 340px; }
 }
 
 .section-tag {
