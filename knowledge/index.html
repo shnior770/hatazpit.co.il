@@ -56,6 +56,7 @@
     <span class="capsule-group-label">כסף על הרצפה</span>
     <div class="article-cards">
       <a class="article-card" href="how-to-apply-for-support.html">
+        <span class="card-share" data-title="איך מגישים בקשה לתמיכה מהרשות המקומית" data-url="how-to-apply-for-support.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">איך מגישים בקשה לתמיכה מהרשות המקומית</span>
@@ -63,6 +64,7 @@
         </span>
       </a>
       <a class="article-card" href="missing-out-on-government-money.html">
+        <span class="card-share" data-title="איך לא לפספס כסף ממשלתי" data-url="missing-out-on-government-money.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span><span class="accent-badge">שת"פ</span></span>
         <span class="card-body">
           <span class="card-title">איך לא לפספס כסף ממשלתי</span>
@@ -70,6 +72,7 @@
         </span>
       </a>
       <a class="article-card" href="milionim-review.html">
+        <span class="card-share" data-title="מיליונים — איך זה באמת עובד" data-url="milionim-review.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">כלי שנבדק</span></span>
         <span class="card-body">
           <span class="card-title">מיליונים — איך זה באמת עובד</span>
@@ -77,6 +80,7 @@
         </span>
       </a>
       <a class="article-card" href="peach-review.html">
+        <span class="card-share" data-title="PEACH — סקירה מעמיקה" data-url="peach-review.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">כלי שנבדק</span><span class="accent-badge">שת"פ</span></span>
         <span class="card-body">
           <span class="card-title">PEACH — סקירה מעמיקה</span>
@@ -90,6 +94,7 @@
     <span class="capsule-group-label">הגנה פרו-אקטיבית</span>
     <div class="article-cards">
       <a class="article-card" href="orderly-management.html">
+        <span class="card-share" data-title="ניהול תקין" data-url="orderly-management.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">ניהול תקין</span>
@@ -97,6 +102,7 @@
         </span>
       </a>
       <a class="article-card" href="section-46.html">
+        <span class="card-share" data-title="סעיף 46" data-url="section-46.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">סעיף 46</span>
@@ -104,6 +110,7 @@
         </span>
       </a>
       <a class="article-card" href="performance-report.html">
+        <span class="card-share" data-title="חשיבות דו&quot;ח ביצוע" data-url="performance-report.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">חשיבות דו"ח ביצוע</span>
@@ -111,6 +118,7 @@
         </span>
       </a>
       <a class="article-card" href="data-security.html">
+        <span class="card-share" data-title="מי שומר על הבית שלכם?" data-url="data-security.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">מי שומר על הבית שלכם?</span>
@@ -124,6 +132,7 @@
     <span class="capsule-group-label">ניהול צמיחה</span>
     <div class="article-cards">
       <a class="article-card" href="vaad-amuta.html">
+        <span class="card-share" data-title="להיות חבר ועד עמותה" data-url="vaad-amuta.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">מדריך</span></span>
         <span class="card-body">
           <span class="card-title">להיות חבר ועד עמותה</span>
@@ -131,6 +140,7 @@
         </span>
       </a>
       <a class="article-card" href="tireless-manager-assistant.html">
+        <span class="card-share" data-title="עוזר מנכ&quot;ל שלא מתעייף" data-url="tireless-manager-assistant.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ">↗</span>
         <span class="accent"><span class="accent-label">כיוון מחשבה</span></span>
         <span class="card-body">
           <span class="card-title">עוזר מנכ"ל שלא מתעייף</span>
@@ -155,6 +165,29 @@
     <span><a href="../contact.html">צור קשר</a></span>
   </div>
 </footer>
+
+<script>
+function shareCard(el) {
+  var title = el.getAttribute('data-title');
+  var url = new URL(el.getAttribute('data-url'), window.location.href).href;
+  var text = encodeURIComponent(title + ' — ' + url);
+  window.open('https://wa.me/?text=' + text, '_blank', 'noopener');
+}
+document.querySelectorAll('.card-share').forEach(function (btn) {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    shareCard(btn);
+  });
+  btn.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      e.stopPropagation();
+      shareCard(btn);
+    }
+  });
+});
+</script>
 
 </body>
 </html>

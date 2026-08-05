@@ -197,6 +197,7 @@ strong { color: var(--ink); }
 .article-cards { display: flex; flex-direction: column; gap: 24px; }
 
 .article-card {
+  position: relative;
   display: flex;
   align-items: stretch;
   min-height: 108px;
@@ -206,6 +207,24 @@ strong { color: var(--ink); }
   border: 1px solid var(--line);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
+.card-share {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  cursor: pointer;
+  z-index: 3;
+  transition: background .2s ease, transform .2s ease;
+}
+.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
 .article-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 34px rgba(0,0,0,0.35);
