@@ -103,6 +103,13 @@ nav.links a:hover { color: var(--cream); }
     var(--bg);
   padding: 40px 0 36px;
 }
+.subhero.knowledge-screen {
+  min-height: calc(100vh - 79px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 24px 0 40px;
+}
 .subhero .eyebrow { color: var(--teal); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
@@ -172,7 +179,12 @@ strong { color: var(--ink); }
 .btn.ghost:hover { border-color: var(--ink-soft); text-decoration: none; }
 
 /* ---------- capsules ---------- */
-.capsule-group { margin: 8px 0 44px; }
+.capsule-group { margin: 8px 0 44px; scroll-margin-top: 100px; border-radius: 16px; transition: background .6s ease; }
+.capsule-group:target { animation: group-focus 1.6s ease; }
+@keyframes group-focus {
+  0% { background: rgba(47,214,192,0.10); }
+  100% { background: transparent; }
+}
 .capsule-group-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: var(--pillar-color, var(--teal)); margin-bottom: 14px; display: block; }
 .capsule-group.money { --pillar-color: var(--amber); }
 .capsule-group.shield { --pillar-color: var(--teal); }
