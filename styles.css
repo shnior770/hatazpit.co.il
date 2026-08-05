@@ -87,7 +87,7 @@ nav.links a:hover { color: var(--cream); }
   background:
     radial-gradient(500px 220px at 100% -20%, rgba(47,214,192,0.14), transparent),
     var(--bg);
-  padding: 46px 0 44px;
+  padding: 40px 0 36px;
 }
 .subhero .eyebrow { color: var(--teal); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
