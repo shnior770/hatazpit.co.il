@@ -72,6 +72,18 @@ nav.links a:hover { color: #fff; }
 }
 .hero .promise p { color: #fff; }
 
+/* ---------- sub-page header band ---------- */
+.subhero {
+  background:
+    radial-gradient(500px 220px at 100% -20%, rgba(23,184,166,0.25), transparent),
+    linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+  color: #fff;
+  padding: 46px 0 58px;
+}
+.subhero .eyebrow { color: var(--teal); }
+.subhero h1 { color: #fff; margin: 0; font-size: 1.9rem; }
+.subhero p.lede { color: rgba(255,255,255,0.8); margin-top: 12px; margin-bottom: 0; }
+
 /* ---------- main content ---------- */
 main { max-width: var(--max-w); margin: 0 auto; padding: 64px 24px 96px; }
 main.wide { max-width: 1040px; }
