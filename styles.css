@@ -68,8 +68,9 @@ header.site.is-scrolling { opacity: 0.12; }
 .brand-home .brand-tagline { font-size: 0.95rem; font-weight: 400; color: var(--ink-soft); margin-right: 6px; }
 
 nav.links { display: flex; gap: 28px; font-size: 0.95rem; }
-nav.links a { color: var(--ink-soft); }
+nav.links a { color: var(--ink-soft); padding: 5px 12px; border-radius: 999px; border: 1px solid transparent; transition: border-color .2s ease, color .2s ease; }
 nav.links a:hover { color: var(--cream); }
+nav.links a.active { color: var(--cream); border-color: var(--teal); }
 
 /* ---------- hero / subhero — same background as body, no seam ---------- */
 .hero {
@@ -413,3 +414,38 @@ footer.site .wrap span:last-child { display: none; }
 
 .closing-line { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); }
 .closing-line em { color: var(--ink-soft); }
+
+/* ---------- table-of-contents rail ---------- */
+.toc-rail {
+  position: fixed;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 40;
+}
+.toc-rail::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  bottom: -20px;
+  right: 4.5px;
+  width: 1px;
+  background: var(--line);
+  z-index: -1;
+}
+.toc-rail a {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bg-raised-2);
+  border: 1px solid var(--line);
+  display: block;
+  transition: background .2s ease, transform .2s ease, border-color .2s ease;
+}
+.toc-rail a:hover { border-color: var(--teal); }
+.toc-rail a.active { background: var(--teal); border-color: var(--teal); transform: scale(1.35); }
+@media (max-width: 1200px) { .toc-rail { display: none; } }
