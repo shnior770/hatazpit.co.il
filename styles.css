@@ -146,6 +146,7 @@ strong { color: var(--ink); }
 
 /* ---------- buttons ---------- */
 .cta-row { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
+.hero .cta-row { margin-top: 100px; justify-content: flex-end; }
 .btn { display: inline-block; padding: 13px 24px; border-radius: 9px; font-weight: 600; font-size: 0.95rem; }
 .btn.primary {
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
