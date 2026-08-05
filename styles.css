@@ -44,6 +44,26 @@ body.home {
 body.home .hero { flex: 1 1 auto; min-height: 0; padding: 24px 0; }
 body.home footer.site { flex: 0 0 auto; margin-top: 0; }
 
+html:has(body.one-screen) { height: 100%; }
+body.one-screen {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body.one-screen header.site { flex: 0 0 auto; }
+body.one-screen .subhero { flex: 0 0 auto; padding: 22px 0; }
+body.one-screen main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+body.one-screen footer.site { flex: 0 0 auto; margin-top: 0; }
+
 /* ---------- header ---------- */
 header.site {
   background: var(--bg);
