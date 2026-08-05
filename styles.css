@@ -34,6 +34,16 @@ body {
 a { color: var(--teal); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+html:has(body.home) { height: 100%; }
+body.home {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+body.home .hero { flex: 1 1 auto; min-height: 0; padding: 24px 0; }
+body.home footer.site { flex: 0 0 auto; margin-top: 0; }
+
 /* ---------- header ---------- */
 header.site {
   background: var(--bg);
