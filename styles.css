@@ -75,7 +75,7 @@ nav.links a:hover { color: var(--cream); }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
 
 /* ---------- knowledge hub header: big title/subtitle docked to the right ---------- */
-.subhero .wrap:has(.knowledge-hero) { display: flex; justify-content: flex-end; }
+.subhero .wrap:has(.knowledge-hero) { display: flex; justify-content: flex-start; }
 .knowledge-hero {
   width: fit-content;
   max-width: 100%;
