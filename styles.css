@@ -53,11 +53,12 @@ header.site {
 .nav-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; color: var(--cream); }
 .brand .mark {
-  width: 11px; height: 11px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--teal), var(--amber));
+  width: 34px; height: 34px; border-radius: 9px;
   display: inline-block;
-  box-shadow: 0 0 12px rgba(47,214,192,0.5);
+  object-fit: cover;
+  vertical-align: middle;
 }
+.brand-home .mark { width: 56px; height: 56px; border-radius: 12px; }
 .brand-home { align-items: center; }
 .brand-home .brand-name { font-size: 2.3rem; font-weight: 700; }
 .brand-home .brand-tagline { font-size: 0.95rem; font-weight: 400; color: var(--ink-soft); margin-right: 6px; }
@@ -284,7 +285,15 @@ ul.plain { padding-right: 20px; color: var(--ink-soft); }
 ul.plain li { margin-bottom: 10px; }
 
 footer.site { border-top: 1px solid var(--line); margin-top: 60px; }
-footer.site .wrap { padding: 32px 24px; color: var(--ink-soft); font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+footer.site .wrap {
+  padding: 12px 24px;
+  color: var(--ink-soft);
+  font-size: 0.72rem;
+  opacity: 0.6;
+  display: block;
+  text-align: center;
+}
+footer.site .wrap span:last-child { display: none; }
 
 .closing-line { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); }
 .closing-line em { color: var(--ink-soft); }
