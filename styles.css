@@ -242,25 +242,25 @@ strong { color: var(--ink); }
 }
 .card-share {
   position: absolute;
-  left: 14px;
   top: 50%;
-  width: 38px;
-  height: 38px;
+  transform: translateY(-50%);
+  left: 14px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   background: rgba(0,0,0,0.4);
   color: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   cursor: pointer;
   z-index: 3;
   transition: background .2s ease, transform .2s ease;
 }
-.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(-24px) scale(1.08); }
-.card-share { transform: translateY(-24px); }
-.card-share.card-copy { transform: translateY(24px); }
-.card-share.card-copy:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(24px) scale(1.08); }
+.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(-50%) scale(1.08); }
+.card-share.card-copy { left: 62px; }
+.card-share.card-copy:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(-50%) scale(1.08); }
 .card-share.copied { background: var(--teal); color: #050b09; }
 .article-card:hover {
   transform: translateY(-3px);
@@ -281,9 +281,11 @@ strong { color: var(--ink); }
   padding: 10px;
   text-align: center;
 }
-.article-card .accent-label {
-  font-size: 2.8rem;
-  line-height: 1;
+.article-card .accent-label { display: flex; }
+.article-card .accent-icon {
+  width: 36px;
+  height: 36px;
+  color: var(--pillar-color, var(--teal));
 }
 .article-card .accent-badge {
   font-size: 0.62rem; font-weight: 800; color: var(--bg);
