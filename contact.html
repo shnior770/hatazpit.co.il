@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
-<body class="one-screen">
+<body class="narrow-header">
 
 <header class="site">
   <div class="wrap nav-row">
@@ -31,9 +31,37 @@
 </section>
 
 <main>
-  <div class="cta-row">
-    <a class="btn primary" href="mailto:REPLACE_WITH_EMAIL@hatazpit.co.il">שליחת מייל</a>
-  </div>
+  <form class="contact-form" id="contact-form">
+    <div class="contact-row">
+      <div class="field">
+        <label for="cf-name">שם מלא</label>
+        <input type="text" id="cf-name" placeholder="ישראל ישראלי" required>
+      </div>
+      <div class="field">
+        <label for="cf-email">דואר אלקטרוני</label>
+        <input type="email" id="cf-email" placeholder="you@example.com" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="cf-subject">סיווג הפנייה</label>
+      <select id="cf-subject">
+        <option>שאלה על מדריך במרכז הידע</option>
+        <option>שאלה ספציפית על העמותה שלי</option>
+        <option>שיתוף פעולה / הצעה עסקית</option>
+        <option>דיווח על טעות באתר</option>
+        <option>אחר</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="cf-message">תוכן ההודעה</label>
+      <textarea id="cf-message" rows="5" placeholder="איך אפשר לעזור?" required></textarea>
+    </div>
+
+    <button type="submit" class="btn primary contact-submit">שליחת הפנייה</button>
+    <p class="contact-note">הלחיצה תפתח את תוכנית המייל שלך עם ההודעה מוכנה לשליחה — אין כאן שרת שאוגר את הנתונים.</p>
+  </form>
 
   <p class="closing-line"><em>הערה לשניאור: להחליף את כתובת המייל בפועל לפני פרסום — שמתי placeholder כדי לא להמציא כתובת.</em></p>
 </main>
@@ -46,5 +74,19 @@
 </footer>
 
 <script src="scripts.js"></script>
+<script>
+document.getElementById('contact-form').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var name = document.getElementById('cf-name').value;
+  var email = document.getElementById('cf-email').value;
+  var subject = document.getElementById('cf-subject').value;
+  var message = document.getElementById('cf-message').value;
+  var body = 'שם: ' + name + '\nאימייל: ' + email + '\n\n' + message;
+  var mailto = 'mailto:REPLACE_WITH_EMAIL@hatazpit.co.il'
+    + '?subject=' + encodeURIComponent(subject)
+    + '&body=' + encodeURIComponent(body);
+  window.location.href = mailto;
+});
+</script>
 </body>
 </html>
