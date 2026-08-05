@@ -194,7 +194,7 @@ strong { color: var(--ink); }
 .capsules { display: flex; flex-wrap: wrap; gap: 12px; }
 
 /* ---------- article cards (inspired by the astro-saga event-card layout) ---------- */
-.article-cards { display: flex; flex-direction: column; gap: 14px; }
+.article-cards { display: flex; flex-direction: column; gap: 24px; }
 
 .article-card {
   display: flex;
@@ -212,27 +212,39 @@ strong { color: var(--ink); }
   border-color: var(--pillar-color, var(--teal));
   text-decoration: none;
 }
-.article-card .accent { width: 7px; flex-shrink: 0; background: var(--pillar-color, var(--teal)); }
+.article-card .accent {
+  width: 120px;
+  flex-shrink: 0;
+  background: var(--pillar-color, var(--teal));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.article-card .accent-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: #050b09;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.article-card .accent-badge {
+  font-size: 0.62rem; font-weight: 800; color: var(--cream);
+  background: #050b09; padding: 3px 9px; border-radius: 20px;
+}
 .article-card .card-body {
   flex: 1;
   padding: 16px 22px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
+  gap: 6px;
   min-width: 0;
 }
-.article-card .card-tag {
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  color: var(--pillar-color, var(--teal));
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.article-card .card-title { font-size: 1.08rem; font-weight: 700; color: var(--cream); }
+.article-card .card-title { font-size: 1.34rem; font-weight: 700; color: var(--cream); }
 .article-card .card-desc {
   font-size: 0.86rem;
   color: var(--ink-soft);
@@ -241,10 +253,6 @@ strong { color: var(--ink); }
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-.article-card .card-badge {
-  font-size: 0.65rem; font-weight: 700; color: #050b09;
-  background: var(--amber); padding: 2px 9px; border-radius: 20px;
 }
 .article-card.pending { opacity: 0.5; cursor: default; }
 .article-card.pending:hover { transform: none; box-shadow: none; border-color: var(--line); }
