@@ -227,7 +227,7 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   display: flex;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 18px;
+  gap: 30px;
   flex-wrap: nowrap;
   margin: 12px 0 8px;
 }
