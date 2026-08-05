@@ -114,9 +114,9 @@ nav.links a:hover { color: var(--cream); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
 
-/* ---------- knowledge hub header: big title/subtitle docked to the right ---------- */
-.subhero .wrap:has(.knowledge-hero) { display: flex; justify-content: flex-start; }
-.knowledge-hero {
+/* ---------- title blocks docked to the true right edge of the screen ---------- */
+.wrap:has(.right-dock) { max-width: none; display: flex; justify-content: flex-start; }
+.right-dock {
   width: 33%;
   min-width: 320px;
   text-align: right;
