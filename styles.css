@@ -63,6 +63,8 @@ body.one-screen main {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+body.one-screen main:has(.contact-split) { justify-content: stretch; }
+body.one-screen main .contact-split { flex: 1 1 auto; }
 body.one-screen footer.site { flex: 0 0 auto; margin-top: 0; }
 
 /* ---------- header ---------- */
@@ -453,8 +455,13 @@ footer.site .wrap span:last-child { display: none; }
 
 /* ---------- contact form ---------- */
 .contact-form { margin: 8px 0 24px; }
-.contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-@media (max-width: 600px) { .contact-row { grid-template-columns: 1fr; } }
+.contact-split { display: grid; grid-template-columns: 1fr 1.3fr; gap: 28px; align-items: stretch; }
+.contact-col-fields { display: flex; flex-direction: column; }
+.contact-col-message { display: flex; flex-direction: column; }
+.field-grow { flex: 1 1 auto; }
+.field-grow textarea { flex: 1 1 auto; min-height: 140px; }
+.contact-col-message .field-grow { display: flex; flex-direction: column; }
+@media (max-width: 700px) { .contact-split { grid-template-columns: 1fr; } }
 .field { margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
 .field label { font-size: 0.78rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .03em; }
 .field input, .field select, .field textarea {
