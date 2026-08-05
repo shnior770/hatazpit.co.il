@@ -74,6 +74,33 @@ nav.links a:hover { color: var(--cream); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
 
+/* ---------- knowledge hub header: big title/subtitle docked to the right third ---------- */
+.knowledge-hero {
+  width: 33%;
+  min-width: 320px;
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right;
+}
+.k-title {
+  font-size: 5.7rem;
+  line-height: 1.02;
+  font-weight: 700;
+  color: var(--cream);
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+}
+.k-subtitle {
+  font-size: 1.6rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .knowledge-hero { width: 100%; min-width: 0; }
+  .k-title { font-size: 3rem; }
+  .k-subtitle { font-size: 1.2rem; }
+}
+
 /* ---------- main content ---------- */
 main { max-width: var(--max-w); margin: 0 auto; padding: 48px 24px 96px; }
 main.wide { max-width: 1040px; }
