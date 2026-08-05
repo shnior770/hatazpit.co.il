@@ -503,19 +503,21 @@ footer.site .wrap span:last-child { display: none; }
 .faq-item[open] summary::after { transform: rotate(180deg); }
 .faq-answer { padding: 0 20px 18px; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.55; }
 
-/* ---------- pull quote, floats in the left margin like a print sidebar ---------- */
+/* ---------- pull quote, pinned to the vertical center of the screen while scrolling ---------- */
 .pull-quote {
-  position: absolute;
-  right: calc(100% + 40px);
+  position: fixed;
+  top: 50%;
+  right: calc(50% + (var(--max-w) / 2) + 40px);
+  transform: translateY(-50%);
   width: 220px;
   font-size: 1.15rem;
   line-height: 1.5;
   color: var(--teal-light);
   font-weight: 600;
+  z-index: 30;
 }
 .pull-quote::before { content: '\201C'; font-size: 2rem; color: var(--teal); display: block; line-height: .5; margin-bottom: 6px; }
 .pull-quote::after { content: '\201D'; font-size: 2rem; color: var(--teal); display: block; line-height: .5; margin-top: 6px; text-align: left; }
-main { position: relative; }
 @media (max-width: 1300px) { .pull-quote { display: none; } }
 
 /* ---------- table-of-contents rail ---------- */
