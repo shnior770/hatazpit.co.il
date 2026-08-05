@@ -24,6 +24,22 @@
 })();
 
 (function () {
+  // reading time badge, only on knowledge/*.html article pages (not the hub, not about/contact/home)
+  if (window.location.pathname.indexOf('/knowledge/') === -1) return;
+  if (document.querySelector('.knowledge-screen')) return;
+  var mainEl = document.querySelector('main');
+  var subheroEl = document.querySelector('.subhero .wrap');
+  if (!mainEl || !subheroEl) return;
+  var words = mainEl.innerText.trim().split(/\s+/).length;
+  if (words < 150) return;
+  var minutes = Math.max(1, Math.round(words / 200));
+  var badge = document.createElement('p');
+  badge.className = 'reading-time';
+  badge.textContent = '⏱ ' + minutes + ' דקות קריאה';
+  subheroEl.appendChild(badge);
+})();
+
+(function () {
   // article step rail: only on article pages with enough sections, skip the knowledge hub
   if (document.querySelector('.knowledge-screen')) return;
   var mainEl = document.querySelector('main');

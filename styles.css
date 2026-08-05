@@ -139,6 +139,7 @@ nav.links a.active { color: var(--cream); border-color: var(--teal); }
 .subhero .eyebrow { color: var(--teal); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
+.reading-time { margin-top: 14px; margin-bottom: 0; font-size: 0.82rem; color: var(--teal); font-weight: 600; }
 
 /* ---------- title blocks docked to the true right edge of the screen ---------- */
 .wrap:has(.right-dock) { max-width: none; display: flex; justify-content: flex-start; }
@@ -251,6 +252,8 @@ strong { color: var(--ink); }
   transition: background .2s ease, transform .2s ease;
 }
 .card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
+.card-share.card-copy { left: 50px; }
+.card-share.copied { background: var(--teal); color: #050b09; }
 .article-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 34px rgba(0,0,0,0.35);
@@ -434,6 +437,36 @@ footer.site .wrap span:last-child { display: none; }
 
 .closing-line { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); }
 .closing-line em { color: var(--ink-soft); }
+
+/* ---------- FAQ accordion ---------- */
+.faq { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 32px; }
+.faq-item {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg-raised);
+  overflow: hidden;
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 16px 20px;
+  font-weight: 700;
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '⌄';
+  font-size: 1.1rem;
+  color: var(--teal);
+  transition: transform .25s ease;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after { transform: rotate(180deg); }
+.faq-answer { padding: 0 20px 18px; color: var(--ink-soft); font-size: 0.94rem; line-height: 1.55; }
 
 /* ---------- table-of-contents rail ---------- */
 .toc-rail {
