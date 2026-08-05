@@ -48,7 +48,12 @@ body.home footer.site { flex: 0 0 auto; margin-top: 0; }
 header.site {
   background: var(--bg);
   border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: opacity .35s ease;
 }
+header.site.is-scrolling { opacity: 0.12; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
 .nav-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; color: var(--cream); }
