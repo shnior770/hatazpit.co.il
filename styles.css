@@ -74,12 +74,11 @@ nav.links a:hover { color: var(--cream); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
 
-/* ---------- knowledge hub header: big title/subtitle docked to the right third ---------- */
+/* ---------- knowledge hub header: big title/subtitle docked to the right ---------- */
+.subhero .wrap:has(.knowledge-hero) { display: flex; justify-content: flex-end; }
 .knowledge-hero {
-  width: 33%;
-  min-width: 320px;
-  margin-right: 0;
-  margin-left: auto;
+  width: fit-content;
+  max-width: 100%;
   text-align: right;
 }
 .k-title {
@@ -89,16 +88,18 @@ nav.links a:hover { color: var(--cream); }
   color: var(--cream);
   margin: 0 0 14px;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 .k-subtitle {
+  width: 100%;
   font-size: 1.6rem;
   color: var(--ink-soft);
   margin: 0;
+  white-space: nowrap;
 }
 @media (max-width: 900px) {
-  .knowledge-hero { width: 100%; min-width: 0; }
-  .k-title { font-size: 3rem; }
-  .k-subtitle { font-size: 1.2rem; }
+  .k-title { font-size: 2.6rem; white-space: normal; }
+  .k-subtitle { font-size: 1.1rem; white-space: normal; }
 }
 
 /* ---------- main content ---------- */
