@@ -116,6 +116,7 @@ nav.links a:hover { color: var(--cream); }
 
 /* ---------- title blocks docked to the true right edge of the screen ---------- */
 .wrap:has(.right-dock) { max-width: none; display: flex; justify-content: flex-start; }
+.subhero .wrap:has(.capsule-xl-row) { max-width: none; }
 .right-dock {
   width: 33%;
   min-width: 320px;
