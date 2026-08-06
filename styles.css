@@ -54,7 +54,14 @@ body.one-screen {
   flex-direction: column;
 }
 body.one-screen header.site { flex: 0 0 auto; }
-body.one-screen .subhero { flex: 0 0 auto; padding: 22px 0; }
+/* the default subhero glow (500px/220px) is sized for the tall subhero on about.html — in this
+   short one-screen box it never finishes fading before the box ends, so it reads as a flat green
+   block instead of a soft glow. Scaled down here so it fully melts to transparent within the box. */
+body.one-screen .subhero {
+  flex: 0 0 auto;
+  padding: 22px 0;
+  background-image: radial-gradient(280px 110px at 100% -10%, rgba(47,214,192,0.14), transparent);
+}
 body.one-screen main {
   flex: 1 1 auto;
   display: flex;
@@ -137,7 +144,8 @@ nav.links a.active { color: var(--cream); border-color: var(--teal); }
   min-height: calc(100vh - 79px);
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 56px;
   padding: 24px 0 40px;
 }
 .subhero .eyebrow { color: var(--teal); }
@@ -145,9 +153,11 @@ nav.links a.active { color: var(--cream); border-color: var(--teal); }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
 .reading-time { margin-top: 14px; margin-bottom: 0; font-size: 0.82rem; color: var(--teal); font-weight: 600; }
 
-/* ---------- title blocks docked to the true right edge of the screen ---------- */
-.wrap:has(.right-dock) { max-width: none; display: flex; justify-content: flex-start; }
-.subhero .wrap:has(.capsule-xl-row) { max-width: none; }
+/* ---------- title block + capsule row: same 1040px wrap as the homepage hero, so the title's right edge
+   lines up exactly with the right edge of the first capsule below it.
+   width:100% is needed because these wraps are flex items of the column layout — without an explicit width,
+   "margin: 0 auto" makes them shrink to fit their content and center themselves instead of filling the 1040px column. */
+.wrap:has(.right-dock), .wrap:has(.capsule-xl-row) { width: 100%; }
 .right-dock {
   width: 33%;
   min-width: 320px;
@@ -361,7 +371,7 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   width: 280px;
   flex-shrink: 1;
   border-radius: 999px;
-  border: 3px solid var(--cream);
+  border: 3px solid var(--teal);
   background: var(--bg-raised-2);
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
@@ -375,7 +385,7 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   padding: 32px 20px 18px;
   font-size: 1.28rem;
   font-weight: 700;
-  color: var(--teal);
+  color: var(--cream);
 }
 .capsule-xl-sep { width: 70%; height: 1px; background: var(--cream); opacity: 0.35; }
 .capsule-xl-sub {
@@ -384,7 +394,7 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   padding: 16px 18px 26px;
   font-size: 0.95rem;
   font-weight: 500;
-  color: var(--teal-deep);
+  color: var(--ink-soft);
   opacity: 0.85;
 }
 
@@ -576,7 +586,7 @@ footer.site .wrap span:last-child { display: none; }
 
   .k-title, .k-subtitle { white-space: normal; }
   .right-dock { width: 100%; min-width: 0; }
-  .wrap:has(.right-dock) { justify-content: center; text-align: center; }
+  .wrap:has(.right-dock) { text-align: center; }
 
   .capsule-xl-row { justify-content: center; }
 
