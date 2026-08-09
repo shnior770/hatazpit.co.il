@@ -1,4 +1,56 @@
 (function () {
+  // cookie consent banner
+  var KEY = 'hatazpit_cookie_consent';
+  var current = null;
+  try { current = localStorage.getItem(KEY); } catch (e) {}
+
+  function grantAnalytics() {
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+    if (value === 'accepted') grantAnalytics();
+    hideBanner();
+  }
+
+  var banner;
+  function showBanner() {
+    banner = document.createElement('div');
+    banner.className = 'cookie-banner';
+    banner.setAttribute('role', 'dialog');
+    banner.setAttribute('aria-label', 'הסכמה לעוגיות');
+    var privacyHref = (window.location.pathname.indexOf('/knowledge/') !== -1 ? '../' : '') + 'privacy.html';
+    banner.innerHTML =
+      '<p>האתר משתמש בעוגיות אנליטיקה כדי להבין איך משתמשים בו ולשפר אותו. פרטים ב<a href="' + privacyHref + '">מדיניות הפרטיות</a>.</p>' +
+      '<div class="cookie-banner-actions">' +
+        '<button type="button" class="cookie-decline">דוחה</button>' +
+        '<button type="button" class="cookie-accept">מאשר/ת</button>' +
+      '</div>';
+    document.body.appendChild(banner);
+    banner.querySelector('.cookie-accept').addEventListener('click', function () { setConsent('accepted'); });
+    banner.querySelector('.cookie-decline').addEventListener('click', function () { setConsent('declined'); });
+  }
+  function hideBanner() {
+    if (banner && banner.parentNode) banner.parentNode.removeChild(banner);
+  }
+
+  if (current === 'accepted') {
+    grantAnalytics();
+  } else if (current !== 'declined') {
+    showBanner();
+  }
+
+  // footer link to reopen the choice at any time
+  document.querySelectorAll('a[href$="privacy.html"]').forEach(function (a) {
+    a.addEventListener('click', function () {}, { passive: true });
+  });
+  var reopen = document.getElementById('cookie-settings');
+  if (reopen) reopen.addEventListener('click', function (e) { e.preventDefault(); showBanner(); });
+})();
+
+(function () {
   var path = window.location.pathname;
   var current = null;
   if (path.indexOf('/knowledge/') !== -1) current = 'מרכז ידע';

@@ -7,11 +7,17 @@
 <meta name="description" content="מה זה אומר להיות חבר ועד בעמותה בפועל: שלושת תחומי האחריות, ואיך זה נראה ביום-יום.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../styles.css?v=7">
+<link rel="stylesheet" href="../styles.css?v=8">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-41P626CNSQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', { analytics_storage: 'denied', ad_storage: 'denied' });
+  try {
+    if (localStorage.getItem('hatazpit_cookie_consent') === 'accepted') {
+      gtag('consent', 'default', { analytics_storage: 'granted', ad_storage: 'denied' });
+    }
+  } catch (e) {}
   gtag('js', new Date());
   gtag('config', 'G-41P626CNSQ');
 </script>
@@ -74,6 +80,8 @@
   <div class="wrap">
     <span>© התצפית</span>
     <span><a href="../accessibility.html">נגישות</a></span>
+    <span><a href="../privacy.html">פרטיות</a></span>
+    <span><button type="button" id="cookie-settings" class="footer-link-btn">הגדרות עוגיות</button></span>
     <span><a href="../sitemap.html">מפת אתר</a></span>
     <span><a href="../contact.html">צור קשר</a></span>
   </div>
