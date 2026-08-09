@@ -126,6 +126,29 @@
 })();
 
 (function () {
+  // copy-to-clipboard button next to mailto: links, so visitors who don't want
+  // the OS/browser account-chooser can just copy the address instead
+  if (!navigator.clipboard) return;
+  document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+    var address = a.href.replace(/^mailto:/, '').split('?')[0];
+    if (!address) return;
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-email-btn';
+    btn.textContent = 'העתק';
+    btn.setAttribute('aria-label', 'העתק את כתובת המייל');
+    btn.addEventListener('click', function () {
+      navigator.clipboard.writeText(address).then(function () {
+        var original = btn.textContent;
+        btn.textContent = 'הועתק!';
+        setTimeout(function () { btn.textContent = original; }, 1800);
+      });
+    });
+    a.insertAdjacentElement('afterend', btn);
+  });
+})();
+
+(function () {
   // read tracking: mark article pages as read (localStorage), show a badge on the hub
   if (window.location.pathname.indexOf('/knowledge/') === -1) return;
   var STORAGE_KEY = 'hatazpit_read_articles';

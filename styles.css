@@ -525,6 +525,19 @@ footer.site .wrap span:last-child { display: none; }
 }
 .footer-link-btn:hover { text-decoration: underline; }
 
+.copy-email-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-inline-start: 6px;
+  font: inherit;
+  font-size: 0.85em;
+  color: var(--teal);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.copy-email-btn:hover { opacity: 0.8; }
+
 .cookie-banner {
   position: fixed;
   left: 0;
