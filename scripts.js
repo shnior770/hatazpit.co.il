@@ -72,3 +72,46 @@
 
   headings.forEach(function (h) { observer.observe(h); });
 })();
+
+(function () {
+  // read tracking: mark article pages as read (localStorage), show a badge on the hub
+  if (window.location.pathname.indexOf('/knowledge/') === -1) return;
+  var STORAGE_KEY = 'hatazpit_read_articles';
+
+  function getRead() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+    catch (e) { return {}; }
+  }
+  function setRead(map) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(map)); }
+    catch (e) {}
+  }
+
+  var isHub = !!document.querySelector('.knowledge-screen');
+
+  if (!isHub) {
+    // article page: mark this article read after a moment of actual reading
+    var slug = window.location.pathname.split('/').pop();
+    setTimeout(function () {
+      var map = getRead();
+      if (!map[slug]) {
+        map[slug] = true;
+        setRead(map);
+      }
+    }, 4000);
+    return;
+  }
+
+  // hub page: badge each card whose article was already read
+  var map = getRead();
+  document.querySelectorAll('.article-card').forEach(function (card) {
+    var href = card.getAttribute('href');
+    if (!href || !map[href]) return;
+    card.classList.add('is-read');
+    var badge = document.createElement('span');
+    badge.className = 'read-badge';
+    badge.textContent = '✓ נקרא';
+    var body = card.querySelector('.card-body');
+    if (body) body.insertBefore(badge, body.firstChild);
+  });
+})();
