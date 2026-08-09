@@ -36,6 +36,25 @@ body {
 a { color: var(--teal); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+.skip-link {
+  position: absolute;
+  right: -9999px;
+  top: 0;
+  z-index: 1000;
+  background: var(--teal);
+  color: var(--bg);
+  padding: 10px 18px;
+  border-radius: 0 0 0 8px;
+  font-weight: 600;
+}
+.skip-link:focus {
+  right: 0;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
 html:has(body.home) { height: 100%; }
 body.home {
   height: 100vh;
@@ -151,6 +170,38 @@ nav.links a.active { color: var(--cream); border-color: var(--teal); }
 .subhero .eyebrow { color: var(--teal); }
 .subhero h1 { color: var(--cream); margin: 0; font-size: 1.9rem; }
 .subhero p.lede { color: var(--ink-soft); margin-top: 12px; margin-bottom: 0; }
+
+.founder-photo,
+.bio-photo {
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 32% 15%;
+  padding: 3px;
+  background: var(--bg-raised-2);
+  border: 1px solid var(--line);
+  box-shadow: 0 0 0 6px var(--accent-soft);
+  flex-shrink: 0;
+}
+
+.founder-photo { width: 116px; height: 116px; margin: 0 0 20px; }
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 48px 0 32px;
+}
+
+.bio-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.bio-photo { width: 64px; height: 64px; }
+
+.bio-text p { margin: 0; color: var(--ink-soft); }
+.bio-text .bio-name { color: var(--cream); font-weight: 600; margin-bottom: 4px; }
 .reading-time { margin-top: 14px; margin-bottom: 0; font-size: 0.82rem; color: var(--teal); font-weight: 600; }
 
 /* ---------- title block + capsule row: same 1040px wrap as the homepage hero, so the title's right edge

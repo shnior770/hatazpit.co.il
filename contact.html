@@ -8,8 +8,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-41P626CNSQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-41P626CNSQ');
+</script>
 </head>
 <body class="one-screen narrow-header">
+
+<a href="#main" class="skip-link">דלג לתוכן</a>
 
 <header class="site">
   <div class="wrap nav-row">
@@ -24,12 +33,12 @@
 
 <section class="subhero">
   <div class="wrap">
-    <h1>יש לך שאלה נקודתית?</h1>
-    <p class="lede">אתה לא צריך עוד מאמר כללי. אם יש לך שאלה ספציפית על העמותה שלך — אפשר לכתוב.</p>
+    <h1>אתה כאן כי משהו מעסיק אותך?!</h1>
+    <p class="lede">אתה לא צריך עוד מאמר כללי. אם יש לך שאלה ספציפית על העמותה שלך — אפשר לכתוב לי.</p>
   </div>
 </section>
 
-<main>
+<main id="main">
   <form class="contact-form contact-split" id="contact-form">
     <div class="contact-col-fields">
       <div class="field">
@@ -66,6 +75,8 @@
 <footer class="site">
   <div class="wrap">
     <span>© התצפית</span>
+    <span><a href="accessibility.html">נגישות</a></span>
+    <span><a href="sitemap.html">מפת אתר</a></span>
     <span><a href="contact.html">צור קשר</a></span>
   </div>
 </footer>
@@ -79,7 +90,7 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   var subject = document.getElementById('cf-subject').value;
   var message = document.getElementById('cf-message').value;
   var body = 'שם: ' + name + '\nאימייל: ' + email + '\n\n' + message;
-  var mailto = 'mailto:REPLACE_WITH_EMAIL@hatazpit.co.il'
+  var mailto = 'mailto:hatazpit.office@gmail.com'
     + '?subject=' + encodeURIComponent(subject)
     + '&body=' + encodeURIComponent(body);
   window.location.href = mailto;
