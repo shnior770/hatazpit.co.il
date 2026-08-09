@@ -20,7 +20,16 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scrollbar-gutter: stable; background: #0c211c; color-scheme: dark; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  background: #0c211c;
+  scrollbar-color: #2fd6c0 #0c211c;
+}
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #0c211c; }
+::-webkit-scrollbar-thumb { background: #1cb6a1; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #2fd6c0; }
 
 body {
   margin: 0;
