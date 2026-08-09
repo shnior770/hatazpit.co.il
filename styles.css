@@ -588,7 +588,15 @@ footer.site .wrap span:last-child { display: none; }
 .field-grow { flex: 1 1 auto; }
 .field-grow textarea { flex: 1 1 auto; min-height: 140px; }
 .contact-col-message .field-grow { display: flex; flex-direction: column; }
-@media (max-width: 700px) { .contact-split { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  .contact-split { grid-template-columns: 1fr; }
+  /* stacked single-column form is taller than 100vh on mobile — the one-screen
+     lockup (height:100vh + overflow:hidden) would clip the message field and
+     submit button with no way to scroll to them, so release the lock here. */
+  html:has(body.one-screen) { height: auto; }
+  body.one-screen { height: auto; overflow: visible; }
+  body.one-screen main { overflow: visible; }
+}
 .field { margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
 .field label { font-size: 0.78rem; font-weight: 700; color: var(--ink-soft); text-transform: uppercase; letter-spacing: .03em; }
 .field input, .field select, .field textarea {
