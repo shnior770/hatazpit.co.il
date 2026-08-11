@@ -294,18 +294,25 @@ strong { color: var(--ink); }
 .capsule-group.money { --pillar-color: var(--teal-deep); }
 .capsule-group.shield { --pillar-color: var(--teal); }
 .capsule-group.strategy { --pillar-color: var(--teal-light); }
+.capsule-group[hidden] { display: none; }
 
 .capsules { display: flex; flex-wrap: wrap; gap: 12px; }
 
-/* ---------- article cards (inspired by the astro-saga event-card layout) ---------- */
-.article-cards { display: flex; flex-direction: column; gap: 24px; max-width: 940px; margin-right: 0; margin-left: auto; }
+/* ---------- article cards: equal-weight, button-like tiles ---------- */
+.article-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
 
 .article-card {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
-  min-height: 124px;
-  border-radius: 14px;
+  min-height: 0;
+  border-radius: 18px;
   overflow: hidden;
   background: var(--bg-raised);
   border: 1px solid var(--line);
@@ -313,25 +320,25 @@ strong { color: var(--ink); }
 }
 .card-share {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 14px;
-  width: 42px;
-  height: 42px;
+  top: 8px;
+  left: 8px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: rgba(0,0,0,0.4);
   color: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   z-index: 3;
   transition: background .2s ease, transform .2s ease;
 }
-.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(-50%) scale(1.08); }
-.card-share.card-copy { left: 62px; }
-.card-share.card-copy:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: translateY(-50%) scale(1.08); }
+.card-share svg { width: 15px; height: 15px; }
+.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
+.card-share.card-copy { left: 48px; }
+.card-share.card-copy:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
 .card-share.copied { background: var(--teal); color: #050b09; }
 .article-card:hover {
   transform: translateY(-3px);
@@ -340,40 +347,41 @@ strong { color: var(--ink); }
   text-decoration: none;
 }
 .article-card .accent {
-  width: 120px;
+  width: 100%;
   flex-shrink: 0;
   background: var(--bg-raised);
-  border-left: 2px solid var(--pillar-color, var(--teal));
+  border-bottom: 2px solid var(--pillar-color, var(--teal));
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
-  padding: 10px;
-  text-align: center;
+  padding: 9px 14px;
+  text-align: right;
 }
 .article-card .accent-label { display: flex; }
 .article-card .accent-icon {
-  width: 36px;
-  height: 36px;
+  width: 22px;
+  height: 22px;
   color: var(--pillar-color, var(--teal));
 }
 .article-card .accent-badge {
-  font-size: 0.62rem; font-weight: 800; color: var(--bg);
-  background: var(--pillar-color, var(--teal)); padding: 3px 9px; border-radius: 20px;
+  font-size: 0.6rem; font-weight: 800; color: var(--bg);
+  background: var(--pillar-color, var(--teal)); padding: 2px 8px; border-radius: 20px;
+  margin-right: auto;
 }
 .article-card .card-body {
   flex: 1;
-  padding: 16px 22px;
+  padding: 14px 18px 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 6px;
   min-width: 0;
 }
-.article-card .card-title { font-size: 1.5rem; font-weight: 700; color: var(--cream); }
+.article-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.35; }
 .article-card .card-desc {
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   color: var(--ink-soft);
   line-height: 1.45;
   display: -webkit-box;
@@ -454,6 +462,8 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   transition: transform .18s ease, box-shadow .18s ease;
 }
 .capsule-xl:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); text-decoration: none; }
+.capsule-xl.is-active { border-color: var(--cream); background: var(--teal-deep); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+.capsule-xl.is-active .card-desc, .capsule-xl.is-active .capsule-xl-sub { opacity: 1; }
 
 .capsule-xl-title {
   width: 100%;

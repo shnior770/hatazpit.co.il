@@ -10,7 +10,7 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../styles.css?v=9">
+<link rel="stylesheet" href="../styles.css?v=10">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-41P626CNSQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -49,17 +49,17 @@
   </div>
   <div class="wrap">
     <div class="capsule-xl-row">
-      <a class="capsule-xl" href="#money">
+      <a class="capsule-xl" href="#money" data-filter="money">
         <span class="capsule-xl-title">כסף על הרצפה</span>
         <span class="capsule-xl-sep"></span>
         <span class="capsule-xl-sub">הזדמנויות שמחכות לכם</span>
       </a>
-      <a class="capsule-xl" href="#shield">
+      <a class="capsule-xl" href="#shield" data-filter="shield">
         <span class="capsule-xl-title">הגנה פרו-אקטיבית</span>
         <span class="capsule-xl-sep"></span>
         <span class="capsule-xl-sub">לוודא שיש לכם גב בטוח</span>
       </a>
-      <a class="capsule-xl" href="#strategy">
+      <a class="capsule-xl" href="#strategy" data-filter="strategy">
         <span class="capsule-xl-title">ניהול צמיחה</span>
         <span class="capsule-xl-sep"></span>
         <span class="capsule-xl-sub">צעדים בטוחים כדי להשפיע</span>
@@ -69,6 +69,10 @@
 </section>
 
 <main class="wide" id="main">
+
+  <p id="filter-reset-row" style="display:none; margin: 0 0 18px;">
+    <button type="button" id="filter-reset" class="footer-link-btn" style="font-size:.9rem;">← הצג את כל המדריכים</button>
+  </p>
 
   <div class="capsule-group money" id="money">
     <div class="article-cards">
@@ -322,6 +326,48 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
     if (e.key === 'Enter' || e.key === ' ') activateShareBtn(btn, e);
   });
 });
+
+(function () {
+  var doors = document.querySelectorAll('.capsule-xl[data-filter]');
+  var groups = document.querySelectorAll('.capsule-group');
+  var resetRow = document.getElementById('filter-reset-row');
+  var resetBtn = document.getElementById('filter-reset');
+
+  function showAll() {
+    groups.forEach(function (g) { g.hidden = false; });
+    doors.forEach(function (d) { d.classList.remove('is-active'); });
+    resetRow.style.display = 'none';
+    if (history.replaceState) history.replaceState(null, '', location.pathname);
+  }
+
+  function applyFilter(key, scroll) {
+    groups.forEach(function (g) { g.hidden = !g.classList.contains(key); });
+    doors.forEach(function (d) { d.classList.toggle('is-active', d.getAttribute('data-filter') === key); });
+    resetRow.style.display = 'block';
+    if (scroll) document.getElementById('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  doors.forEach(function (door) {
+    door.addEventListener('click', function (e) {
+      var key = door.getAttribute('data-filter');
+      if (door.classList.contains('is-active')) {
+        e.preventDefault();
+        showAll();
+      } else {
+        e.preventDefault();
+        applyFilter(key, true);
+        if (history.replaceState) history.replaceState(null, '', '#' + key);
+      }
+    });
+  });
+
+  resetBtn.addEventListener('click', showAll);
+
+  var initial = (location.hash || '').replace('#', '');
+  if (initial === 'money' || initial === 'shield' || initial === 'strategy') {
+    applyFilter(initial, false);
+  }
+})();
 </script>
 
 <script src="../scripts.js"></script>
