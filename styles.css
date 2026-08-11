@@ -320,6 +320,24 @@ strong { color: var(--ink); }
 }
 .article-cards[hidden] { display: none; }
 
+.layout-toggle { display: inline-flex; gap: 8px; align-items: center; margin-inline-start: 12px; }
+.layout-toggle button {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 14px;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.layout-toggle button.is-active {
+  color: var(--bg);
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
 .article-card {
   position: relative;
   display: flex;
@@ -395,10 +413,12 @@ strong { color: var(--ink); }
   min-width: 0;
 }
 .article-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.35; }
-.article-card.card-wide { grid-column: 1 / -1; }
+
+/* whole-list layout toggle: grid (default markup) vs. full-width stacked cards */
+.article-cards.layout-wide { display: flex; flex-direction: column; }
 @media (min-width: 640px) {
-  .article-card.card-wide { flex-direction: row; min-height: 132px; }
-  .article-card.card-wide .accent {
+  .article-cards.layout-wide .article-card { flex-direction: row; min-height: 132px; }
+  .article-cards.layout-wide .article-card .accent {
     width: 130px;
     flex-shrink: 0;
     flex-direction: column;
@@ -409,10 +429,10 @@ strong { color: var(--ink); }
     padding: 10px;
     text-align: center;
   }
-  .article-card.card-wide .accent-icon { width: 34px; height: 34px; }
-  .article-card.card-wide .card-body { justify-content: center; padding: 18px 24px; }
-  .article-card.card-wide .card-title { font-size: 1.4rem; }
-  .article-card.card-wide .card-desc { font-size: 0.9rem; -webkit-line-clamp: 2; }
+  .article-cards.layout-wide .article-card .accent-icon { width: 34px; height: 34px; }
+  .article-cards.layout-wide .article-card .card-body { justify-content: center; padding: 18px 24px; }
+  .article-cards.layout-wide .article-card .card-title { font-size: 1.4rem; }
+  .article-cards.layout-wide .article-card .card-desc { font-size: 0.9rem; -webkit-line-clamp: 2; }
 }
 .article-card .card-desc {
   font-size: 0.82rem;
