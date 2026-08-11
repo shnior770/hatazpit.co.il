@@ -70,7 +70,7 @@
 
 <main class="wide" id="main">
 
-  <p id="filter-reset-row" style="display:none; margin: 0 0 18px;">
+  <p id="filter-reset-row" style="display:none; margin: 0 0 18px; scroll-margin-top: 100px;">
     <button type="button" id="filter-reset" class="footer-link-btn" style="font-size:.9rem;">← חזרה לבחירת דלת</button>
   </p>
 
@@ -342,7 +342,7 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
     doors.forEach(function (d) { d.classList.toggle('is-active', d.getAttribute('data-filter') === key); });
     resetRow.style.display = 'block';
     hint.style.display = 'none';
-    if (scroll) document.getElementById('main').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (scroll) resetRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   doors.forEach(function (door) {
