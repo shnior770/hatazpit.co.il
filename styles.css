@@ -102,6 +102,16 @@ body.one-screen main:has(.contact-split) { justify-content: stretch; }
 body.one-screen main .contact-split { flex: 1 1 auto; }
 body.one-screen footer.site { flex: 0 0 auto; margin-top: 0; }
 
+/* ---------- knowledge hub: no-scroll doors screen until a filter is chosen ---------- */
+body.doors-only { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+body.doors-only header.site { flex: 0 0 auto; }
+body.doors-only .subhero.knowledge-screen { flex: 1 1 auto; min-height: 0; }
+body.doors-only main { flex: 0 0 auto; padding: 0; }
+body.doors-only footer.site { flex: 0 0 auto; margin-top: 0; }
+@media (max-height: 620px), (max-width: 720px) {
+  body.doors-only { height: auto; overflow: visible; }
+}
+
 /* ---------- header ---------- */
 header.site {
   background: var(--bg);
@@ -385,6 +395,25 @@ strong { color: var(--ink); }
   min-width: 0;
 }
 .article-card .card-title { font-size: 1.05rem; font-weight: 700; color: var(--cream); line-height: 1.35; }
+.article-card.card-wide { grid-column: 1 / -1; }
+@media (min-width: 640px) {
+  .article-card.card-wide { flex-direction: row; min-height: 132px; }
+  .article-card.card-wide .accent {
+    width: 130px;
+    flex-shrink: 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    border-bottom: none;
+    border-left: 2px solid var(--pillar-color, var(--teal));
+    padding: 10px;
+    text-align: center;
+  }
+  .article-card.card-wide .accent-icon { width: 34px; height: 34px; }
+  .article-card.card-wide .card-body { justify-content: center; padding: 18px 24px; }
+  .article-card.card-wide .card-title { font-size: 1.4rem; }
+  .article-card.card-wide .card-desc { font-size: 0.9rem; -webkit-line-clamp: 2; }
+}
 .article-card .card-desc {
   font-size: 0.82rem;
   color: var(--ink-soft);
