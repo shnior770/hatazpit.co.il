@@ -308,6 +308,7 @@ strong { color: var(--ink); }
   gap: 18px;
   align-items: stretch;
 }
+.article-cards[hidden] { display: none; }
 
 .article-card {
   position: relative;
@@ -321,6 +322,7 @@ strong { color: var(--ink); }
   border: 1px solid var(--line);
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
+.article-card[hidden] { display: none; }
 .card-share {
   position: absolute;
   top: 8px;
