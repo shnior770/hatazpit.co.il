@@ -10,7 +10,7 @@
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../assets/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
-<link rel="stylesheet" href="../styles.css?v=13">
+<link rel="stylesheet" href="../styles.css?v=14">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-41P626CNSQ"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -73,8 +73,12 @@
   <p id="filter-reset-row" style="display:none; margin: 0 0 18px; scroll-margin-top: 100px; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
     <button type="button" id="filter-reset" class="footer-link-btn" style="font-size:.9rem;">← חזרה לבחירת דלת</button>
     <span class="layout-toggle" role="group" aria-label="פריסת המדריכים">
-      <button type="button" id="layout-wide-btn" class="is-active" aria-pressed="true">כרטיסים רחבים</button>
-      <button type="button" id="layout-grid-btn" aria-pressed="false">גריד</button>
+      <button type="button" id="layout-grid-btn" aria-pressed="false" aria-label="תצוגת גריד" title="תצוגת גריד">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      </button>
+      <button type="button" id="layout-wide-btn" class="is-active" aria-pressed="true" aria-label="תצוגת רשימה רחבה" title="תצוגת רשימה רחבה">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l1.2 1.2L6.5 4.7"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l1.2 1.2 2.3-2.5"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 18l1.2 1.2 2.3-2.5"/></svg>
+      </button>
     </span>
   </p>
 
