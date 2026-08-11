@@ -295,6 +295,9 @@ strong { color: var(--ink); }
 .capsule-group.shield { --pillar-color: var(--teal); }
 .capsule-group.strategy { --pillar-color: var(--teal-light); }
 .capsule-group[hidden] { display: none; }
+.article-card[data-cats^="money"] { --pillar-color: var(--teal-deep); }
+.article-card[data-cats^="shield"] { --pillar-color: var(--teal); }
+.article-card[data-cats^="strategy"] { --pillar-color: var(--teal-light); }
 
 .capsules { display: flex; flex-wrap: wrap; gap: 12px; }
 

@@ -76,9 +76,8 @@
 
   <p id="filter-hint" style="text-align:center; color:var(--ink-soft); margin: 30px 0;">בחרו אחת מהדלתות למעלה כדי לראות את המדריכים</p>
 
-  <div class="capsule-group money" id="money" hidden>
-    <div class="article-cards">
-      <a class="article-card" href="how-to-apply-for-support.html">
+  <div class="article-cards" id="article-list" hidden>
+      <a class="article-card" href="how-to-apply-for-support.html" data-cats="money">
         <span class="card-share" data-title="איך מגישים בקשה לתמיכה מהרשות המקומית" data-url="how-to-apply-for-support.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="how-to-apply-for-support.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -87,7 +86,7 @@
           <span class="card-desc">שמונה שלבים להגשה נכונה — מה חוזר בכל קריטריון, ואיך לא להיפסל.</span>
         </span>
       </a>
-      <a class="article-card" href="missing-out-on-government-money.html">
+      <a class="article-card" href="missing-out-on-government-money.html" data-cats="money">
         <span class="card-share" data-title="איך לא לפספס כסף ממשלתי" data-url="missing-out-on-government-money.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="missing-out-on-government-money.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span><span class="accent-badge">שת"פ</span></span>
@@ -96,7 +95,7 @@
           <span class="card-desc">המדריך למנהל שלא רוצה להשאיר תקציבים על הרצפה בגלל בירוקרטיה.</span>
         </span>
       </a>
-      <a class="article-card" href="milionim-review.html">
+      <a class="article-card" href="milionim-review.html" data-cats="money">
         <span class="card-share" data-title="מיליונים — איך זה באמת עובד" data-url="milionim-review.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="milionim-review.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="כלי שנבדק"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg></span></span>
@@ -105,7 +104,7 @@
           <span class="card-desc">סקירה מהשטח על מודל גיוס תרומות בתשלום: העלות, הזמן, ולמי זה מתאים.</span>
         </span>
       </a>
-      <a class="article-card" href="section-46.html">
+      <a class="article-card" href="section-46.html" data-cats="money strategy">
         <span class="card-share" data-title="סעיף 46" data-url="section-46.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="section-46.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -114,7 +113,7 @@
           <span class="card-desc">מה זה נותן לתורמים שלכם, ואיך יודעים אם אתם מוכנים להגיש.</span>
         </span>
       </a>
-      <a class="article-card" href="private-donors.html">
+      <a class="article-card" href="private-donors.html" data-cats="money strategy">
         <span class="card-share" data-title="גיוס משאבים מתורמים פרטיים" data-url="private-donors.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="private-donors.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -123,12 +122,7 @@
           <span class="card-desc">למה זו לא "בקשה" אלא הזמנה לשותפות — ואיך בונים את זה נכון.</span>
         </span>
       </a>
-    </div>
-  </div>
-
-  <div class="capsule-group shield" id="shield" hidden>
-    <div class="article-cards">
-      <a class="article-card" href="orderly-management.html">
+      <a class="article-card" href="orderly-management.html" data-cats="shield">
         <span class="card-share" data-title="ניהול תקין" data-url="orderly-management.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="orderly-management.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -137,7 +131,7 @@
           <span class="card-desc">מה זה, למה זה חשוב, ומה חייב להיות מסודר כדי לעמוד בזה.</span>
         </span>
       </a>
-      <a class="article-card" href="performance-report.html">
+      <a class="article-card" href="performance-report.html" data-cats="shield">
         <span class="card-share" data-title="חשיבות דו&quot;ח ביצוע" data-url="performance-report.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="performance-report.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -146,7 +140,7 @@
           <span class="card-desc">איך מכינים דוח שמחבר בין התקציב לפעילות בשטח, ולמה זה תנאי סף להמשך תמיכה.</span>
         </span>
       </a>
-      <a class="article-card" href="data-security.html">
+      <a class="article-card" href="data-security.html" data-cats="shield">
         <span class="card-share" data-title="מי שומר על הבית שלכם?" data-url="data-security.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="data-security.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -155,7 +149,7 @@
           <span class="card-desc">אבטחת מידע ופרטיות לעמותות — איך יודעים אם המוסד שלכם חשוף.</span>
         </span>
       </a>
-      <a class="article-card" href="annual-budget.html">
+      <a class="article-card" href="annual-budget.html" data-cats="shield">
         <span class="card-share" data-title="תקציב שנתי לעמותה" data-url="annual-budget.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="annual-budget.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -164,7 +158,7 @@
           <span class="card-desc">איך בונים תקציב שמחזיק מעמד כל השנה, לא רק קובץ שסוגרים פעם אחת.</span>
         </span>
       </a>
-      <a class="article-card" href="trial-balance.html">
+      <a class="article-card" href="trial-balance.html" data-cats="shield">
         <span class="card-share" data-title="מאזן בוחן — מה זה" data-url="trial-balance.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="trial-balance.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -173,7 +167,7 @@
           <span class="card-desc">הכלי שמאפשר להבין את מצב העמותה בזמן אמת, לא רק בסוף השנה.</span>
         </span>
       </a>
-      <a class="article-card" href="audit-readiness.html">
+      <a class="article-card" href="audit-readiness.html" data-cats="shield">
         <span class="card-share" data-title="הכנת העמותה לביקורת עומק" data-url="audit-readiness.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="audit-readiness.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -182,7 +176,7 @@
           <span class="card-desc">מה בודקים בביקורת עומק, ואיך מתכוננים מבלי להילחץ ברגע האחרון.</span>
         </span>
       </a>
-      <a class="article-card" href="transparency-reporting.html">
+      <a class="article-card" href="transparency-reporting.html" data-cats="shield">
         <span class="card-share" data-title="שקיפות ודיווח לציבור" data-url="transparency-reporting.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="transparency-reporting.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -191,7 +185,7 @@
           <span class="card-desc">למה שקיפות היא הזדמנות לבנות אמון, לא רק חובה חוקית.</span>
         </span>
       </a>
-      <a class="article-card" href="risk-management.html">
+      <a class="article-card" href="risk-management.html" data-cats="shield">
         <span class="card-share" data-title="ניהול סיכונים בעמותה" data-url="risk-management.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="risk-management.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -200,7 +194,7 @@
           <span class="card-desc">אילו סיכונים מאיימים על עמותה, ואיך בונים מנגנון הגנה לפני שקורה משבר.</span>
         </span>
       </a>
-      <a class="article-card" href="insurance.html">
+      <a class="article-card" href="insurance.html" data-cats="shield">
         <span class="card-share" data-title="ביטוח עמותות" data-url="insurance.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="insurance.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -209,12 +203,7 @@
           <span class="card-desc">איך להפסיק להיות "פקיד" של הפוליסה ולהתחיל לנהל את הסיכון.</span>
         </span>
       </a>
-    </div>
-  </div>
-
-  <div class="capsule-group strategy" id="strategy" hidden>
-    <div class="article-cards">
-      <a class="article-card" href="vaad-amuta.html">
+      <a class="article-card" href="vaad-amuta.html" data-cats="shield strategy">
         <span class="card-share" data-title="להיות חבר ועד עמותה" data-url="vaad-amuta.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="vaad-amuta.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -223,7 +212,7 @@
           <span class="card-desc">מה זה אומר בפועל, ושלושת תחומי האחריות שכל חבר ועד צריך להכיר.</span>
         </span>
       </a>
-      <a class="article-card" href="committee-management.html">
+      <a class="article-card" href="committee-management.html" data-cats="shield strategy">
         <span class="card-share" data-title="ניהול ועד מנהל" data-url="committee-management.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="committee-management.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -232,7 +221,7 @@
           <span class="card-desc">התפקידים, האחריות, והטעויות שחוזרות על עצמן בעמותות רבות.</span>
         </span>
       </a>
-      <a class="article-card" href="tireless-manager-assistant.html">
+      <a class="article-card" href="tireless-manager-assistant.html" data-cats="strategy">
         <span class="card-share" data-title="עוזר מנכ&quot;ל שלא מתעייף" data-url="tireless-manager-assistant.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="tireless-manager-assistant.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="כיוון מחשבה"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/></svg></span></span>
@@ -241,7 +230,7 @@
           <span class="card-desc">איך מערכת סוכנים חכמה יכולה להחזיר למנכ"ל עמותה את השקט הנפשי.</span>
         </span>
       </a>
-      <a class="article-card" href="work-plan.html">
+      <a class="article-card" href="work-plan.html" data-cats="strategy">
         <span class="card-share" data-title="תוכנית עבודה שנתית" data-url="work-plan.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="work-plan.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -250,7 +239,7 @@
           <span class="card-desc">איך עוברים מתפעול הישרדותי לניהול לפי תוכנית.</span>
         </span>
       </a>
-      <a class="article-card" href="volunteers.html">
+      <a class="article-card" href="volunteers.html" data-cats="strategy">
         <span class="card-share" data-title="עבודה עם מתנדבים" data-url="volunteers.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="volunteers.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -259,7 +248,7 @@
           <span class="card-desc">גיוס, הכשרה ושימור לאורך זמן — בלי לוותר על מסגרת בשם ה"טובה".</span>
         </span>
       </a>
-      <a class="article-card" href="partnerships.html">
+      <a class="article-card" href="partnerships.html" data-cats="strategy">
         <span class="card-share" data-title="שיתופי פעולה — רשויות וארגונים אחרים" data-url="partnerships.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="partnerships.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -268,7 +257,7 @@
           <span class="card-desc">עם מי כדאי, ואיך בונים שיתוף פעולה שעובד בפועל ולא רק על הנייר.</span>
         </span>
       </a>
-      <a class="article-card" href="donor-crm.html">
+      <a class="article-card" href="donor-crm.html" data-cats="strategy">
         <span class="card-share" data-title="ניהול מאגר תורמים ו-CRM לעמותות" data-url="donor-crm.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="donor-crm.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="מדריך"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></span></span>
@@ -277,7 +266,7 @@
           <span class="card-desc">למה "עוד קטנים בשביל מערכת" היא בדיוק הסיבה שנשארים קטנים.</span>
         </span>
       </a>
-      <a class="article-card" href="peach-review.html">
+      <a class="article-card" href="peach-review.html" data-cats="strategy">
         <span class="card-share" data-title="PEACH — סקירה מעמיקה" data-url="peach-review.html" role="button" tabindex="0" aria-label="שתף בוואטסאפ"><svg viewBox="0 0 32 32" width="19" height="19" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M16 3C9 3 3 9 3 16c0 2.5.7 4.8 1.9 6.8L3 29l6.4-1.8c1.9 1.1 4.1 1.7 6.6 1.7 7 0 13-6 13-13S23 3 16 3zm0 23.7c-2.2 0-4.3-.6-6.1-1.7l-.4-.3-4 1.1 1.1-3.9-.3-.4C5.1 20 4.4 18 4.4 16 4.4 9.9 9.6 4.7 16 4.7S27.6 9.9 27.6 16 22.4 26.7 16 26.7zm6.1-8.5c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.6-2.6-1.4-3.7-3.1-.3-.5.3-.4.7-1.4.1-.2.1-.4 0-.5-.1-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 2.9 4.6 4 2.7 1.1 2.7.7 3.2.7.5-.1 1.6-.7 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg></span>
         <span class="card-share card-copy" data-url="peach-review.html" role="button" tabindex="0" aria-label="העתק קישור"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg></span>
         <span class="accent"><span class="accent-label" aria-label="כלי שנבדק"><svg class="accent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg></span><span class="accent-badge">שת"פ</span></span>
@@ -286,7 +275,6 @@
           <span class="card-desc">בדיקה של מערכת <span lang="en">CRM</span> לעמותות דרך שבעת הכאבים האמיתיים של מנהלים.</span>
         </span>
       </a>
-    </div>
   </div>
 
 </main>
@@ -331,13 +319,14 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
 
 (function () {
   var doors = document.querySelectorAll('.capsule-xl[data-filter]');
-  var groups = document.querySelectorAll('.capsule-group');
+  var list = document.getElementById('article-list');
+  var cards = document.querySelectorAll('.article-card[data-cats]');
   var resetRow = document.getElementById('filter-reset-row');
   var resetBtn = document.getElementById('filter-reset');
   var hint = document.getElementById('filter-hint');
 
   function clearFilter() {
-    groups.forEach(function (g) { g.hidden = true; });
+    list.hidden = true;
     doors.forEach(function (d) { d.classList.remove('is-active'); });
     resetRow.style.display = 'none';
     hint.style.display = 'block';
@@ -345,7 +334,11 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
   }
 
   function applyFilter(key, scroll) {
-    groups.forEach(function (g) { g.hidden = !g.classList.contains(key); });
+    list.hidden = false;
+    cards.forEach(function (c) {
+      var cats = c.getAttribute('data-cats').split(' ');
+      c.hidden = cats.indexOf(key) === -1;
+    });
     doors.forEach(function (d) { d.classList.toggle('is-active', d.getAttribute('data-filter') === key); });
     resetRow.style.display = 'block';
     hint.style.display = 'none';
