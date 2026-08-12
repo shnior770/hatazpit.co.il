@@ -367,8 +367,8 @@ strong { color: var(--ink); }
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.4);
-  color: var(--cream);
+  background: rgba(47,214,192,0.15);
+  color: var(--teal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -380,7 +380,7 @@ strong { color: var(--ink); }
 .card-share svg { width: 15px; height: 15px; }
 .card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
 .card-share.card-copy { left: 48px; }
-.card-share.card-copy:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
+.card-share.card-share-general { left: 88px; }
 .card-share.copied { background: var(--teal); color: #050b09; }
 .article-card:hover {
   transform: translateY(-3px);
@@ -439,7 +439,17 @@ strong { color: var(--ink); }
     text-align: center;
   }
   .article-cards.layout-wide .article-card .accent-icon { width: 34px; height: 34px; }
-  .article-cards.layout-wide .article-card .card-body { justify-content: center; padding: 18px 24px; }
+  .article-cards.layout-wide .article-card .card-body { justify-content: center; padding: 18px 24px 18px 250px; }
+  .article-cards.layout-wide .article-card .card-share {
+    width: 68px;
+    height: 68px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .article-cards.layout-wide .article-card .card-share svg { width: 30px; height: 30px; }
+  .article-cards.layout-wide .article-card .card-share:hover { transform: translateY(-50%) scale(1.08); }
+  .article-cards.layout-wide .article-card .card-share.card-copy { left: 84px; }
+  .article-cards.layout-wide .article-card .card-share.card-share-general { left: 160px; }
   .article-cards.layout-wide .article-card .card-title { font-size: 1.4rem; }
   .article-cards.layout-wide .article-card .card-desc { font-size: 0.9rem; -webkit-line-clamp: 2; }
 }
@@ -810,9 +820,11 @@ footer.site .wrap span:last-child { display: none; }
   .article-card { flex-direction: column; }
   .article-card .accent { width: 100%; flex-direction: row; border-left: none; border-bottom: 2px solid var(--pillar-color, var(--teal)); padding: 10px; }
   .article-card .accent-badge { margin-right: 8px; }
-  .card-share { top: 14px; transform: none; left: 14px; }
+  .card-share { top: 14px; transform: none; left: 14px; width: 34px; height: 34px; }
+  .card-share svg { width: 15px; height: 15px; }
   .card-share.card-copy { left: 62px; }
-  .card-share:hover, .card-share.card-copy:hover { transform: scale(1.08); }
+  .card-share.card-share-general { left: 110px; }
+  .card-share:hover { transform: scale(1.08); }
 
   .contact-split { gap: 24px; }
 
