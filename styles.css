@@ -136,7 +136,7 @@ header.site.is-scrolling { opacity: 0.12; }
 .brand-home .brand-tagline { font-size: 0.95rem; font-weight: 400; color: var(--ink-soft); margin-right: 6px; }
 
 nav.links { display: flex; gap: 28px; font-size: 0.95rem; }
-nav.links a { color: var(--ink-soft); padding: 5px 12px; border-radius: 999px; border: 1px solid transparent; transition: border-color .2s ease, color .2s ease, background .2s ease; }
+nav.links a { color: var(--ink-soft); padding: 5px 12px; border-radius: 999px; border: 2px solid transparent; transition: border-color .2s ease, color .2s ease, background .2s ease; }
 nav.links a:hover { color: var(--cream); background: rgba(47,214,192,0.12); }
 nav.links a.active { color: var(--cream); border-color: var(--teal); }
 
@@ -325,7 +325,7 @@ strong { color: var(--ink); }
   gap: 2px;
   align-items: center;
   padding: 3px;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(47,214,192,0.45);
   border-radius: 999px;
 }
 .layout-toggle button {
