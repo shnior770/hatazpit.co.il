@@ -31,9 +31,16 @@
     document.body.appendChild(banner);
     banner.querySelector('.cookie-accept').addEventListener('click', function () { setConsent('accepted'); });
     banner.querySelector('.cookie-decline').addEventListener('click', function () { setConsent('declined'); });
+    void banner.offsetHeight;
+    requestAnimationFrame(function () { banner.classList.add('is-visible'); });
   }
   function hideBanner() {
-    if (banner && banner.parentNode) banner.parentNode.removeChild(banner);
+    if (!banner || !banner.parentNode) return;
+    var el = banner;
+    el.classList.remove('is-visible');
+    window.setTimeout(function () {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, 300);
   }
 
   if (current === 'accepted') {

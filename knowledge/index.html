@@ -70,7 +70,7 @@
 
 <main class="wide" id="main">
 
-  <p id="filter-reset-row" style="display:none; margin: 0 0 18px; scroll-margin-top: 100px; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+  <p id="filter-reset-row" style="display:none; margin: 0 0 18px; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
     <button type="button" id="filter-reset" class="footer-link-btn" style="font-size:.9rem;">← חזרה לבחירת דלת</button>
     <span class="layout-toggle" role="group" aria-label="פריסת המדריכים">
       <button type="button" id="layout-grid-btn" aria-pressed="false" aria-label="תצוגת גריד" title="תצוגת גריד">
@@ -363,6 +363,7 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
   var resetBtn = document.getElementById('filter-reset');
 
   function clearFilter() {
+    list.classList.remove('is-visible');
     list.hidden = true;
     doors.forEach(function (d) { d.classList.remove('is-active'); });
     resetRow.style.display = 'none';
@@ -372,6 +373,7 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
 
   function applyFilter(key, scroll) {
     list.hidden = false;
+    list.classList.remove('is-visible');
     cards.forEach(function (c) {
       var cats = c.getAttribute('data-cats').split(' ');
       c.hidden = cats.indexOf(key) === -1;
@@ -379,6 +381,9 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
     doors.forEach(function (d) { d.classList.toggle('is-active', d.getAttribute('data-filter') === key); });
     resetRow.style.display = 'flex';
     document.body.classList.remove('doors-only');
+    // force layout before adding the class, so the fade-in transition actually plays
+    void list.offsetHeight;
+    requestAnimationFrame(function () { list.classList.add('is-visible'); });
     if (scroll) resetRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
@@ -399,7 +404,7 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
 
   var wideBtn = document.getElementById('layout-wide-btn');
   var gridBtn = document.getElementById('layout-grid-btn');
-  function setLayout(mode) {
+  function applyLayout(mode) {
     list.classList.toggle('layout-wide', mode === 'wide');
     wideBtn.classList.toggle('is-active', mode === 'wide');
     wideBtn.setAttribute('aria-pressed', mode === 'wide');
@@ -407,11 +412,26 @@ document.querySelectorAll('.card-share').forEach(function (btn) {
     gridBtn.setAttribute('aria-pressed', mode === 'grid');
     try { localStorage.setItem('hatazpit_knowledge_layout', mode); } catch (e) {}
   }
-  wideBtn.addEventListener('click', function () { setLayout('wide'); });
-  gridBtn.addEventListener('click', function () { setLayout('grid'); });
+  function setLayout(mode, animate) {
+    if (!animate || list.hidden) { applyLayout(mode); return; }
+    // cross-fade: hide, swap the grid/row layout while invisible, fade back in —
+    // grid <-> flex can't be CSS-transitioned directly, so the swap is masked
+    list.style.transitionDuration = '.18s';
+    list.classList.remove('is-visible');
+    window.setTimeout(function () {
+      applyLayout(mode);
+      void list.offsetHeight;
+      requestAnimationFrame(function () {
+        list.classList.add('is-visible');
+        window.setTimeout(function () { list.style.transitionDuration = ''; }, 200);
+      });
+    }, 180);
+  }
+  wideBtn.addEventListener('click', function () { setLayout('wide', true); });
+  gridBtn.addEventListener('click', function () { setLayout('grid', true); });
   var savedLayout = null;
   try { savedLayout = localStorage.getItem('hatazpit_knowledge_layout'); } catch (e) {}
-  if (savedLayout === 'grid') setLayout('grid');
+  if (savedLayout === 'grid') setLayout('grid', false);
 
   var initial = (location.hash || '').replace('#', '');
   if (initial === 'money' || initial === 'shield' || initial === 'strategy') {
