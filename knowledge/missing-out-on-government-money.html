@@ -88,11 +88,60 @@
 
   <div class="cta-row">
     <a class="btn primary" href="../contact.html">לתיאום שיחת בדיקת זכאות</a>
-    <a class="btn ghost" href="support-simulator.html">בדקו את פוטנציאל התמיכות שלכם ←</a>
+    <a class="btn ghost cta-sim" href="support-simulator.html">בדקו את פוטנציאל התמיכות שלכם ←</a>
   </div>
   <p class="closing-line">רוצים את זה כחוברת קריאה שלמה, אחת, בשלוק אחד? <a href="../budget-guide.html">10 האתגרים ו-3 המנועים שגורמים למנהלים לוותר על תקציב שמגיע להם — חוברת חינמית להורדה</a>.</p>
   <p class="closing-line">מדריך זה הוא חלק ממרכז הידע של התצפית. <a class="back-btn" href="index.html" onclick="history.back();return false;">חזור</a>. ראו גם: <a href="how-to-apply-for-support.html">איך מגישים בקשה לתמיכה מהרשות המקומית</a>.</p>
 </main>
+
+<a href="support-simulator.html" class="sim-bubble" aria-label="בדקו את פוטנציאל התמיכות שלכם">
+  <span class="sim-bubble-icon">₪</span>
+</a>
+<style>
+/* מסגרת בהירה לכפתור הסימולטור — כדי שלא "ייעלם" מול הכפתור המלא לצידו */
+.cta-sim { border-color: var(--teal); color: var(--teal-light); }
+.cta-sim:hover { border-color: var(--teal-light); color: var(--cream); }
+
+.sim-bubble {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 22px rgba(0,0,0,0.4), 0 0 0 5px rgba(47,214,192,0.18);
+  transition: transform .15s ease;
+  overflow: hidden;
+}
+.sim-bubble:hover { transform: scale(1.06); text-decoration: none; }
+.sim-bubble-icon { font-size: 1.5rem; font-weight: 700; color: #06231e; position: relative; z-index: 1; }
+/* הברקה חולפת: קו אור עדין שחוצה את העיגול כל כמה שניות ואז נעצר — תופס עין בלי הבהוב מתמיד */
+.sim-bubble::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(75deg, transparent, rgba(255,255,255,0.65), transparent);
+  transform: rotate(20deg);
+  animation: sim-sweep 4.5s ease-in-out infinite;
+}
+@keyframes sim-sweep {
+  0%   { left: -60%; }
+  16%  { left: 160%; }
+  100% { left: 160%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sim-bubble::after { animation: none; }
+}
+@media (max-width: 640px) {
+  .sim-bubble { left: 14px; bottom: 14px; width: 52px; height: 52px; }
+  .sim-bubble-icon { font-size: 1.3rem; }
+}
+</style>
 
 <footer class="site">
   <div class="wrap">
