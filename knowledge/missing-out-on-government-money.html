@@ -74,6 +74,7 @@
   <p><strong>אחריות הדדית</strong> — כשהתשלום מבוסס הצלחה, האינטרס של שני הצדדים זהה.</p>
 
   <h2>האם המוסד שלכם מאבד תקציב כרגע?</h2>
+  <p>כדי לתת מושג בסדר גודל: לפי נתוני תמיכות ממשלתיות שפורסמו בפועל, תמיכות מכוח סעיף 3א מגיעות לעיתים קרובות עד לתקרה של כ-₪500,000 בשנה — ומדי שנה עשרות מוסדות בכל תחום (חינוך תורני, תרבות, רווחה, התיישבות) אכן מגיעים אליה. השאלה היא לא אם יש כסף כזה על השולחן, אלא אם המוסד שלכם נמצא ברשימה שמיצתה אותו.</p>
   <ul class="plain">
     <li>האם בשנה האחרונה שמעתם על תקציב שמוסד אחר קיבל, ואתם אפילו לא הגשתם אליו?</li>
     <li>האם הגשתם בקשה שנדחתה בגלל "חוסר במסמכים" או "אי עמידה בתנאי סף"?</li>
@@ -91,6 +92,30 @@
   <p class="closing-line">רוצים את זה כחוברת קריאה שלמה, אחת, בשלוק אחד? <a href="../budget-guide.html">10 האתגרים ו-3 המנועים שגורמים למנהלים לוותר על תקציב שמגיע להם — חוברת חינמית להורדה</a>.</p>
   <p class="closing-line">מדריך זה הוא חלק ממרכז הידע של התצפית. <a class="back-btn" href="index.html" onclick="history.back();return false;">חזור</a>. ראו גם: <a href="how-to-apply-for-support.html">איך מגישים בקשה לתמיכה מהרשות המקומית</a>.</p>
 </main>
+
+<a href="support-simulator.html" class="sim-bubble" aria-label="בדקו את פוטנציאל התמיכות שלכם">
+  <span class="sim-bubble-icon">₪</span>
+</a>
+<style>
+.sim-bubble {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 60;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 4px rgba(47,214,192,0.15);
+  transition: transform .15s ease;
+}
+.sim-bubble:hover { transform: scale(1.06); text-decoration: none; }
+.sim-bubble-icon { font-size: 1.35rem; font-weight: 700; color: #06231e; }
+@media (max-width: 640px) {
+  .sim-bubble { left: 14px; bottom: 14px; width: 46px; height: 46px; }
+  .sim-bubble-icon { font-size: 1.15rem; }
+}
+</style>
 
 <footer class="site">
   <div class="wrap">
