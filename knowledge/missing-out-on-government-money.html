@@ -95,11 +95,17 @@
 </main>
 
 <a href="support-simulator.html" class="sim-bubble" aria-label="בדקו את פוטנציאל התמיכות שלכם">
-  <span class="sim-bubble-icon">₪</span>
+  <span class="sim-bubble-icon">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 15a8 8 0 1 1 16 0" stroke="#06231e" stroke-width="2" stroke-linecap="round"/>
+      <path d="M12 15l4.5-5.5" stroke="#06231e" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="15" r="1.4" fill="#06231e"/>
+    </svg>
+  </span>
 </a>
 <style>
 /* מסגרת בהירה לכפתור הסימולטור — כדי שלא "ייעלם" מול הכפתור המלא לצידו */
-.cta-sim { border-color: var(--teal); color: var(--teal-light); }
+.cta-sim { border-width: 2px; border-color: var(--teal); color: var(--teal-light); }
 .cta-sim:hover { border-color: var(--teal-light); color: var(--cream); }
 
 .sim-bubble {
@@ -116,8 +122,8 @@
   overflow: hidden;
 }
 .sim-bubble:hover { transform: scale(1.06); text-decoration: none; }
-.sim-bubble-icon { font-size: 1.5rem; font-weight: 700; color: #06231e; position: relative; z-index: 1; }
-/* הברקה חולפת: קו אור עדין שחוצה את העיגול כל כמה שניות ואז נעצר — תופס עין בלי הבהוב מתמיד */
+.sim-bubble-icon { display: flex; position: relative; z-index: 1; }
+/* הברקה חולפת: קו אור עדין שחוצה את העיגול ואז נעצר — תופס עין בלי הבהוב מתמיד */
 .sim-bubble::after {
   content: '';
   position: absolute;
@@ -127,11 +133,11 @@
   height: 220%;
   background: linear-gradient(75deg, transparent, rgba(255,255,255,0.65), transparent);
   transform: rotate(20deg);
-  animation: sim-sweep 4.5s ease-in-out infinite;
+  animation: sim-sweep 2.4s ease-in-out infinite;
 }
 @keyframes sim-sweep {
   0%   { left: -60%; }
-  16%  { left: 160%; }
+  30%  { left: 160%; }
   100% { left: 160%; }
 }
 @media (prefers-reduced-motion: reduce) {
