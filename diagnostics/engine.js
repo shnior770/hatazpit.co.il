@@ -102,8 +102,76 @@
     };
   }
 
+  function computeRouting(data, screener, answers) {
+    var answeredCount = Object.keys(answers).filter(function (id) { return answers[id] != null; }).length;
+    if (answeredCount < screener.minimum_answered_questions) {
+      return { valid: false, answeredCount: answeredCount, required: screener.minimum_answered_questions };
+    }
+
+    var categories = screener.categories
+      .slice()
+      .sort(function (a, b) { return a.sort_order - b.sort_order; })
+      .map(function (category) {
+        var weighted = 0;
+        var denominator = 0;
+        screener.questions
+          .filter(function (question) { return question.category_id === category.category_id; })
+          .forEach(function (question) {
+            if (answers[question.question_id] == null) return;
+            var value = normalizeAnswer(data, screener, question, answers[question.question_id]);
+            if (value == null) return;
+            weighted += (100 - value);
+            denominator += 1;
+          });
+        return Object.assign({}, category, { needScore: denominator ? round(weighted / denominator) : null });
+      })
+      .filter(function (category) { return category.needScore != null; });
+
+    var maxNeed = Math.max.apply(null, categories.map(function (c) { return c.needScore; }));
+    var leaders = categories.filter(function (c) { return c.needScore === maxNeed; });
+    var fallbackRule = screener.routing.find(function (r) { return r.operator === 'fallback'; });
+
+    function ruleFor(categoryId) {
+      return screener.routing.find(function (r) { return r.source_category_id === categoryId && r.status === 'active'; });
+    }
+
+    if (leaders.length === categories.length) {
+      return {
+        valid: true,
+        tie: 'full',
+        target_assessment_id: fallbackRule.target_assessment_id,
+        explanation_he: fallbackRule.explanation_he,
+        categories: categories
+      };
+    }
+
+    if (leaders.length === 1) {
+      var rule = ruleFor(leaders[0].category_id);
+      return {
+        valid: true,
+        tie: 'none',
+        target_assessment_id: rule.target_assessment_id,
+        explanation_he: rule.explanation_he,
+        category: leaders[0],
+        categories: categories
+      };
+    }
+
+    var candidates = leaders
+      .map(function (c) { return { category: c, rule: ruleFor(c.category_id) }; })
+      .sort(function (a, b) { return a.rule.tie_break_order - b.rule.tie_break_order; });
+
+    return {
+      valid: true,
+      tie: 'partial',
+      candidates: candidates,
+      categories: categories
+    };
+  }
+
   return {
     normalizeAnswer: normalizeAnswer,
-    scoreAssessment: scoreAssessment
+    scoreAssessment: scoreAssessment,
+    computeRouting: computeRouting
   };
 });

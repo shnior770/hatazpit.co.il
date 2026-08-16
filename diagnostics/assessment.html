@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" href="../assets/favicon-64.png" sizes="64x64">
 <link rel="stylesheet" href="../styles.css?v=14">
-<link rel="stylesheet" href="diagnostics.css?v=1">
+<link rel="stylesheet" href="diagnostics.css?v=2">
 </head>
 <body class="diagnostic-runner">
 <a href="#diagnostic-app" class="skip-link">דלג לשאלון</a>
@@ -27,20 +27,20 @@
 
 <template id="intro-template">
   <section class="diagnostic-panel intro-panel">
-    <p class="eyebrow">מסלול הבהירות</p>
+    <p class="eyebrow" data-field="eyebrow">מסלול הבהירות</p>
     <h1 data-field="title"></h1>
     <p class="lede" data-field="description"></p>
     <div class="intro-facts">
       <div><strong data-field="question-count"></strong><span>שאלות</span></div>
       <div><strong data-field="minutes"></strong><span>דקות משוערות</span></div>
-      <div><strong>מיידי</strong><span>דוח מסכם</span></div>
+      <div><strong data-field="intro-fact-3-label">מיידי</strong><span data-field="intro-fact-3-sub">דוח מסכם</span></div>
     </div>
     <div class="privacy-inline">
       <strong>לא נשמור את התשובות שלכם.</strong>
       <span>העיבוד מתבצע בדפדפן. בסיום שמרו את הדוח לפני היציאה.</span>
     </div>
     <button class="btn primary diagnostic-start" type="button">מתחילים</button>
-    <a class="quiet-link" href="index.html">לבחירת מסלול אחר</a>
+    <a class="quiet-link" href="index.html">חזרה למסלול הבהירות</a>
   </section>
 </template>
 
@@ -59,6 +59,16 @@
       <button class="btn ghost diagnostic-back" type="button">לשאלה הקודמת</button>
       <span class="autosave-note">התשובות נשמרות בזיכרון הדפדפן רק עד היציאה מהעמוד</span>
     </div>
+  </section>
+</template>
+
+<template id="routing-result-template">
+  <section class="diagnostic-panel routing-panel">
+    <p class="eyebrow">תוצאת המיפוי</p>
+    <h1 data-field="routing-title"></h1>
+    <p class="lede" data-field="routing-explanation"></p>
+    <div class="routing-choices" data-field="routing-choices"></div>
+    <a class="quiet-link" href="index.html">חזרה למסלול הבהירות</a>
   </section>
 </template>
 
@@ -81,10 +91,18 @@
       <p class="save-warning">הדוח אינו נשמר אצלנו. שמרו עותק לפני היציאה מהעמוד.</p>
     </section>
 
+    <section class="report-section priority-section" aria-labelledby="priority-title" data-field="priority-section" hidden>
+      <div class="section-heading compact">
+        <p class="step-kicker">מוקדי עדיפות</p>
+        <h2 id="priority-title">איפה הכי כדאי להתמקד עכשיו</h2>
+      </div>
+      <div class="priority-areas"></div>
+    </section>
+
     <section class="report-section" aria-labelledby="category-results-title">
       <div class="section-heading compact">
         <p class="step-kicker">תמונת מצב</p>
-        <h2 id="category-results-title">שלושת הממדים שנבדקו</h2>
+        <h2 id="category-results-title">פירוט לפי ממדים</h2>
       </div>
       <div class="category-results"></div>
     </section>
@@ -109,7 +127,7 @@
   </article>
 </template>
 
-<script src="engine.js?v=1"></script>
-<script src="app.js?v=1"></script>
+<script src="engine.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

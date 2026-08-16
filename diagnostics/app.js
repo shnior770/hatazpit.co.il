@@ -1,24 +1,28 @@
 (function () {
   'use strict';
 
-  var ALLOWED = ['workplan_basic', 'budget_basic'];
   var app = document.getElementById('diagnostic-app');
   var params = new URLSearchParams(window.location.search);
-  var assessmentId = params.get('id');
+  var directDomainId = params.get('domain');
+  var flow = params.get('flow');
+
   var data;
-  var assessment;
-  var answers = {};
+  var stageAssessment;
+  var stageAnswers = {};
+  var stageIsScreener = false;
   var currentIndex = 0;
   var milestones = {};
+  var resolvedDomainId = null;
+  var lastRoutingExplanation = null;
 
   function track(name, values) {
     if (typeof window.gtag !== 'function') return;
-    window.gtag('event', name, Object.assign({ assessment_id: assessmentId }, values || {}));
+    window.gtag('event', name, Object.assign({}, values || {}));
   }
 
   function fail(message) {
     app.innerHTML = '<section class="diagnostic-panel error-panel"><p class="eyebrow">משהו השתבש</p><h1>' +
-      message + '</h1><p>אפשר לחזור לבחירת המסלול ולנסות שוב.</p><a class="btn primary" href="index.html">לבחירת מסלול</a></section>';
+      message + '</h1><p>אפשר לחזור למסלול הבהירות ולנסות שוב.</p><a class="btn primary" href="index.html">למסלול הבהירות</a></section>';
   }
 
   function cloneTemplate(id) {
@@ -30,37 +34,41 @@
     return root.querySelector('[data-field="' + name + '"]');
   }
 
-  function sortedQuestions() {
+  function sortedQuestions(assessment) {
     return assessment.questions.slice().sort(function (a, b) { return a.display_order - b.display_order; });
   }
 
-  function categoryById(id) {
+  function categoryById(assessment, id) {
     return assessment.categories.find(function (category) { return category.category_id === id; });
   }
 
-  function responseOptions(question) {
+  function responseOptions(assessment, question) {
     var setId = question.response_set_id || assessment.default_response_set_id;
     return data.response_sets[setId].options.slice().sort(function (a, b) { return a.display_order - b.display_order; });
   }
 
-  function showIntro() {
+  // ---------- intro ----------
+  function showIntro(assessment, isScreener, onStart) {
     var view = cloneTemplate('intro-template');
+    field(view, 'eyebrow').textContent = isScreener ? 'מסלול הבהירות — שלב 1' : 'מסלול הבהירות — אבחון תחומי';
     field(view, 'title').textContent = assessment.short_title_he;
     field(view, 'description').textContent = assessment.description_he;
     field(view, 'question-count').textContent = assessment.question_count;
     field(view, 'minutes').textContent = assessment.estimated_minutes;
     view.querySelector('.diagnostic-start').addEventListener('click', function () {
-      track('diagnostic_start', { question_count: assessment.question_count });
-      showQuestion(0);
+      track(isScreener ? 'diagnostic_start' : 'domain_diagnostic_start', { question_count: assessment.question_count });
+      onStart();
     });
     app.replaceChildren(view);
+    app.focus({ preventScroll: true });
   }
 
-  function showQuestion(index) {
-    var questions = sortedQuestions();
+  // ---------- question ----------
+  function showQuestion(assessment, answers, index, isScreener, onDone) {
+    var questions = sortedQuestions(assessment);
     currentIndex = index;
     var question = questions[index];
-    var category = categoryById(question.category_id);
+    var category = categoryById(assessment, question.category_id);
     var view = cloneTemplate('question-template');
     var percent = Math.round((index / questions.length) * 100);
     field(view, 'progress-label').textContent = 'שאלה ' + (index + 1) + ' מתוך ' + questions.length;
@@ -75,7 +83,7 @@
     progress.querySelector('span').style.width = percent + '%';
 
     var optionsRoot = view.querySelector('.answer-options');
-    responseOptions(question).forEach(function (option) {
+    responseOptions(assessment, question).forEach(function (option) {
       var button = document.createElement('button');
       button.type = 'button';
       button.className = 'answer-button';
@@ -87,12 +95,12 @@
         [25, 50, 75].forEach(function (mark) {
           if (completion >= mark && !milestones[mark]) {
             milestones[mark] = true;
-            track('diagnostic_progress', { percent_complete: mark });
+            track(isScreener ? 'screener_progress' : 'domain_progress', { percent_complete: mark });
           }
         });
         window.setTimeout(function () {
-          if (index + 1 < questions.length) showQuestion(index + 1);
-          else showResults();
+          if (index + 1 < questions.length) showQuestion(assessment, answers, index + 1, isScreener, onDone);
+          else onDone();
         }, 120);
       });
       optionsRoot.appendChild(button);
@@ -100,11 +108,77 @@
 
     var back = view.querySelector('.diagnostic-back');
     if (index === 0) back.disabled = true;
-    back.addEventListener('click', function () { if (index > 0) showQuestion(index - 1); });
+    back.addEventListener('click', function () { if (index > 0) showQuestion(assessment, answers, index - 1, isScreener, onDone); });
     app.replaceChildren(view);
     app.focus({ preventScroll: true });
   }
 
+  // ---------- routing result ----------
+  function domainTitle(id) {
+    var a = data.assessments[id];
+    return a ? a.short_title_he : id;
+  }
+
+  function goToDomain(domainId, explanationHe) {
+    var domainAssessment = data.assessments[domainId];
+    if (!domainAssessment || domainAssessment.level !== 'domain' || domainAssessment.status !== 'launch_ready') {
+      fail('התחום המומלץ עדיין לא זמין. אפשר לחזור למסלול הבהירות ולבחור מסלול אחר.');
+      return;
+    }
+    resolvedDomainId = domainId;
+    lastRoutingExplanation = explanationHe;
+    stageAnswers = {};
+    milestones = {};
+    stageAssessment = domainAssessment;
+    stageIsScreener = false;
+    document.title = domainAssessment.short_title_he + ' — מסלול הבהירות';
+    showIntro(domainAssessment, false, function () {
+      showQuestion(domainAssessment, stageAnswers, 0, false, showResults);
+    });
+  }
+
+  function showRoutingResult(routing) {
+    track('screener_complete');
+    var view = cloneTemplate('routing-result-template');
+    var choicesRoot = field(view, 'routing-choices');
+
+    if (routing.tie === 'none') {
+      field(view, 'routing-title').textContent = 'מומלץ להתמקד ב: ' + domainTitle(routing.target_assessment_id);
+      field(view, 'routing-explanation').textContent = routing.explanation_he;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn primary';
+      btn.textContent = 'המשך לאבחון התחומי';
+      btn.addEventListener('click', function () { goToDomain(routing.target_assessment_id, routing.explanation_he); });
+      choicesRoot.appendChild(btn);
+    } else if (routing.tie === 'partial') {
+      field(view, 'routing-title').textContent = 'יש לכם תיקו בין כמה תחומים';
+      field(view, 'routing-explanation').textContent = 'כמה ממדים יצאו באותה רמת דחיפות. אפשר לבחור באיזה מהם להתחיל — תמיד אפשר לחזור ולבדוק גם את השני.';
+      routing.candidates.forEach(function (c) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'btn primary route-cta';
+        b.style.marginLeft = '10px';
+        b.textContent = domainTitle(c.rule.target_assessment_id);
+        b.addEventListener('click', function () { goToDomain(c.rule.target_assessment_id, c.rule.explanation_he); });
+        choicesRoot.appendChild(b);
+      });
+    } else {
+      field(view, 'routing-title').textContent = 'לא עלה פער בולט בין התחומים';
+      field(view, 'routing-explanation').textContent = routing.explanation_he;
+      var dbtn = document.createElement('button');
+      dbtn.type = 'button';
+      dbtn.className = 'btn primary';
+      dbtn.textContent = 'המשך לאבחון התחומי המומלץ';
+      dbtn.addEventListener('click', function () { goToDomain(routing.target_assessment_id, routing.explanation_he); });
+      choicesRoot.appendChild(dbtn);
+    }
+
+    app.replaceChildren(view);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---------- results ----------
   function scoreClass(score) {
     if (score < 40) return 'low';
     if (score < 70) return 'mid';
@@ -112,18 +186,34 @@
   }
 
   function showResults() {
-    var result = window.HatazpitDiagnosticsEngine.scoreAssessment(data, assessment, answers);
+    var result = window.HatazpitDiagnosticsEngine.scoreAssessment(data, stageAssessment, stageAnswers);
     if (!result.valid) {
       fail('אין עדיין מספיק תשובות להפקת הדוח');
       return;
     }
-    track('diagnostic_complete');
+    track('domain_diagnostic_complete');
     var view = cloneTemplate('results-template');
-    field(view, 'result-title').textContent = 'תמונת המצב שלכם: ' + assessment.short_title_he;
+    field(view, 'result-title').textContent = 'תמונת המצב שלכם: ' + stageAssessment.short_title_he;
     field(view, 'score').textContent = Math.round(result.score);
     field(view, 'band').textContent = result.band.label_he;
     field(view, 'summary').textContent = result.band.summary_he;
     view.querySelector('.score-ring').classList.add(scoreClass(result.score));
+
+    var ratedCategories = result.categories.filter(function (c) { return c.score != null; });
+
+    var prioritySection = field(view, 'priority-section');
+    var priorityAreas = view.querySelector('.priority-areas');
+    var weakest = ratedCategories.slice().sort(function (a, b) { return a.score - b.score; }).filter(function (c) { return c.score < 70; }).slice(0, 3);
+    if (weakest.length) {
+      prioritySection.hidden = false;
+      weakest.forEach(function (category) {
+        var card = document.createElement('article');
+        card.className = 'category-result ' + scoreClass(category.score);
+        card.innerHTML = '<div class="category-score"><strong>' + Math.round(category.score) + '</strong><span>/100</span></div>' +
+          '<div><h3>' + category.title_he + '</h3><p>' + (category.insight ? category.insight.summary_he : category.description_he) + '</p></div>';
+        priorityAreas.appendChild(card);
+      });
+    }
 
     var categoryRoot = view.querySelector('.category-results');
     result.categories.forEach(function (category) {
@@ -158,49 +248,94 @@
       });
     }
 
-    var linkIds = assessment.actions.map(function (action) { return action.content_link_id; }).filter(Boolean);
-    var uniqueLink = linkIds.find(function (id) { return data.content_links[id]; });
+    var linkIds = [];
+    result.actions.forEach(function (a) { if (a.content_link_id && linkIds.indexOf(a.content_link_id) === -1) linkIds.push(a.content_link_id); });
+    ratedCategories.forEach(function (c) { if (c.insight && c.insight.content_link_id && linkIds.indexOf(c.insight.content_link_id) === -1) linkIds.push(c.insight.content_link_id); });
     var contentRoot = view.querySelector('.content-recommendations');
-    if (uniqueLink) {
-      var link = data.content_links[uniqueLink];
-      contentRoot.innerHTML = '<a class="content-card no-print" href="..' + link.path + '"><span>מדריך מעשי</span><strong>' + link.title_he + '</strong><em>לקריאת המאמר ←</em></a>' +
-        '<p class="print-only">להעמקה: ' + link.title_he + ' — ' + window.location.origin + link.path + '</p>';
+    var shownLinks = linkIds.filter(function (id) { return data.content_links[id]; }).slice(0, 3);
+    if (shownLinks.length) {
+      shownLinks.forEach(function (id) {
+        var link = data.content_links[id];
+        var a = document.createElement('a');
+        a.className = 'content-card no-print';
+        a.href = '..' + link.path;
+        a.innerHTML = '<span>מדריך מעשי</span><strong>' + link.title_he + '</strong><em>לקריאת המאמר ←</em>';
+        contentRoot.appendChild(a);
+        var p = document.createElement('p');
+        p.className = 'print-only';
+        p.textContent = 'להעמקה: ' + link.title_he + ' — ' + window.location.origin + link.path;
+        contentRoot.appendChild(p);
+      });
     } else {
       view.querySelector('.content-section').hidden = true;
     }
 
-    var disclaimer = data.disclaimers[assessment.disclaimer_id];
+    var disclaimer = data.disclaimers[stageAssessment.disclaimer_id];
     field(view, 'disclaimer').textContent = disclaimer ? disclaimer.text_he : '';
     view.querySelector('.print-report').addEventListener('click', function () {
       track('diagnostic_report_print');
       window.print();
     });
     view.querySelector('.restart-diagnostic').addEventListener('click', function () {
-      answers = {};
-      milestones = {};
       track('diagnostic_restart');
-      showIntro();
+      startFlow();
     });
     app.replaceChildren(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  if (!ALLOWED.includes(assessmentId)) {
+  // ---------- boot ----------
+  function startFlow() {
+    stageAnswers = {};
+    milestones = {};
+    if (directDomainId) {
+      var domainAssessment = data.assessments[directDomainId];
+      if (!domainAssessment || domainAssessment.level !== 'domain' || domainAssessment.status !== 'launch_ready') {
+        fail('האבחון המבוקש אינו זמין כרגע');
+        return;
+      }
+      stageAssessment = domainAssessment;
+      stageIsScreener = false;
+      document.title = domainAssessment.short_title_he + ' — מסלול הבהירות';
+      showIntro(domainAssessment, false, function () {
+        showQuestion(domainAssessment, stageAnswers, 0, false, showResults);
+      });
+      return;
+    }
+
+    var screener = data.assessments.screener;
+    if (!screener || screener.level !== 'screener') {
+      fail('שאלון המיון אינו זמין כרגע');
+      return;
+    }
+    stageAssessment = screener;
+    stageIsScreener = true;
+    document.title = 'מיפוי — מסלול הבהירות';
+    showIntro(screener, true, function () {
+      showQuestion(screener, stageAnswers, 0, true, function () {
+        var routing = window.HatazpitDiagnosticsEngine.computeRouting(data, screener, stageAnswers);
+        if (!routing.valid) {
+          fail('אין עדיין מספיק תשובות כדי להמליץ על תחום');
+          return;
+        }
+        showRoutingResult(routing);
+      });
+    });
+  }
+
+  if (!directDomainId && flow !== 'clarity') {
     fail('המסלול המבוקש אינו זמין כרגע');
     return;
   }
 
-  fetch('../data/diagnostics-v1.json', { cache: 'no-store' })
+  fetch('../data/diagnostics-v2.json', { cache: 'no-store' })
     .then(function (response) {
       if (!response.ok) throw new Error('Could not load diagnostics data');
       return response.json();
     })
     .then(function (payload) {
       data = payload;
-      assessment = data.assessments.find(function (item) { return item.assessment_id === assessmentId; });
-      if (!assessment || assessment.status !== 'launch_ready') throw new Error('Assessment unavailable');
-      document.title = assessment.short_title_he + ' — מסלול הבהירות';
-      showIntro();
+      startFlow();
     })
     .catch(function () { fail('לא הצלחנו לטעון את המסלול'); });
 })();
