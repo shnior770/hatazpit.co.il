@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מסלול הבהירות — התצפית</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/favicon-64.png" sizes="64x64">
+<link rel="stylesheet" href="../styles.css?v=14">
+<link rel="stylesheet" href="diagnostics.css?v=1">
+</head>
+<body class="diagnostic-runner">
+<a href="#diagnostic-app" class="skip-link">דלג לשאלון</a>
+
+<header class="site diagnostic-header">
+  <div class="wrap nav-row">
+    <a class="brand" href="../index.html"><span class="mark"></span><span class="brand-name">התצפית</span></a>
+    <a class="quiet-link" href="index.html">יציאה מהמסלול</a>
+  </div>
+</header>
+
+<main id="diagnostic-app" class="diagnostic-app" aria-live="polite">
+  <div class="loading-state" role="status">טוען את מסלול הבהירות…</div>
+</main>
+
+<template id="intro-template">
+  <section class="diagnostic-panel intro-panel">
+    <p class="eyebrow">מסלול הבהירות</p>
+    <h1 data-field="title"></h1>
+    <p class="lede" data-field="description"></p>
+    <div class="intro-facts">
+      <div><strong data-field="question-count"></strong><span>שאלות</span></div>
+      <div><strong data-field="minutes"></strong><span>דקות משוערות</span></div>
+      <div><strong>מיידי</strong><span>דוח מסכם</span></div>
+    </div>
+    <div class="privacy-inline">
+      <strong>לא נשמור את התשובות שלכם.</strong>
+      <span>העיבוד מתבצע בדפדפן. בסיום שמרו את הדוח לפני היציאה.</span>
+    </div>
+    <button class="btn primary diagnostic-start" type="button">מתחילים</button>
+    <a class="quiet-link" href="index.html">לבחירת מסלול אחר</a>
+  </section>
+</template>
+
+<template id="question-template">
+  <section class="diagnostic-panel question-panel">
+    <div class="progress-meta">
+      <span data-field="progress-label"></span>
+      <span data-field="category"></span>
+    </div>
+    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"><span></span></div>
+    <p class="question-number" data-field="question-number"></p>
+    <h1 class="question-text" data-field="question"></h1>
+    <p class="question-help" data-field="help"></p>
+    <div class="answer-options" role="group" aria-label="אפשרויות תשובה"></div>
+    <div class="question-navigation">
+      <button class="btn ghost diagnostic-back" type="button">לשאלה הקודמת</button>
+      <span class="autosave-note">התשובות נשמרות בזיכרון הדפדפן רק עד היציאה מהעמוד</span>
+    </div>
+  </section>
+</template>
+
+<template id="results-template">
+  <article class="diagnostic-results">
+    <section class="result-hero">
+      <p class="eyebrow">המסלול הושלם</p>
+      <h1 data-field="result-title"></h1>
+      <div class="score-lockup">
+        <div class="score-ring"><strong data-field="score"></strong><span>מתוך 100</span></div>
+        <div>
+          <p class="result-band" data-field="band"></p>
+          <p data-field="summary"></p>
+        </div>
+      </div>
+      <div class="report-actions no-print">
+        <button class="btn primary print-report" type="button">שמירת הדוח כ־PDF</button>
+        <button class="btn ghost restart-diagnostic" type="button">מילוי מחדש</button>
+      </div>
+      <p class="save-warning">הדוח אינו נשמר אצלנו. שמרו עותק לפני היציאה מהעמוד.</p>
+    </section>
+
+    <section class="report-section" aria-labelledby="category-results-title">
+      <div class="section-heading compact">
+        <p class="step-kicker">תמונת מצב</p>
+        <h2 id="category-results-title">שלושת הממדים שנבדקו</h2>
+      </div>
+      <div class="category-results"></div>
+    </section>
+
+    <section class="report-section actions-section" aria-labelledby="actions-title">
+      <div class="section-heading compact">
+        <p class="step-kicker">מכאן לפעולה</p>
+        <h2 id="actions-title">הצעדים שכדאי להתחיל מהם</h2>
+      </div>
+      <div class="recommended-actions"></div>
+    </section>
+
+    <section class="report-section content-section" aria-labelledby="learn-more-title">
+      <div class="section-heading compact">
+        <p class="step-kicker">להעמקה</p>
+        <h2 id="learn-more-title">המשך קריאה במרכז הידע</h2>
+      </div>
+      <div class="content-recommendations"></div>
+    </section>
+
+    <section class="report-disclaimer" data-field="disclaimer"></section>
+  </article>
+</template>
+
+<script src="engine.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
