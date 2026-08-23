@@ -648,7 +648,16 @@ footer.site .wrap span:last-child { display: none; }
 /* מרכז הידע: לוח קריאה בהיר לגוף המאמר בלבד. הכותרת/הירו (מותגי) נשארים כהים
    כמו בשאר האתר; רק תוכן <main> עובר לרקע בהיר עם פונט גדול יותר, לפי בחירת
    שניאור (גרסה C) אחרי סקירת מוקאפ ב-23.08.26. */
-body.knowledge-article main { background: var(--cream); }
+body.knowledge-article main {
+  background: var(--cream);
+  border-radius: 18px;
+  margin-top: 18px;
+  margin-bottom: 40px;
+  box-shadow: 0 16px 34px rgba(0,0,0,0.4);
+}
+@media (max-width: 640px) {
+  body.knowledge-article main { margin-left: 14px; margin-right: 14px; }
+}
 body.knowledge-article main h2,
 body.knowledge-article main h3 { color: #123a32; }
 body.knowledge-article main p,
@@ -661,6 +670,7 @@ body.knowledge-article main .closing-line { border-top-color: rgba(18,58,50,0.18
 body.knowledge-article main .closing-line em { color: #4a5e57; }
 body.knowledge-article main .back-btn { color: #123a32; border-color: rgba(18,58,50,0.25); }
 body.knowledge-article main .back-btn:hover { color: #0c211c; border-color: var(--teal-deep); }
+body.knowledge-article main blockquote { background: rgba(28,182,161,0.12); color: #123a32; }
 
 /* ---------- contact form ---------- */
 .contact-form { margin: 8px 0 24px; }
