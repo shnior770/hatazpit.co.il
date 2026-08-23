@@ -123,7 +123,7 @@ header.site {
 }
 header.site.is-scrolling { opacity: 0.12; }
 .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
-.nav-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+.nav-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 0; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.15rem; color: var(--cream); }
 .brand .mark {
   width: 11px; height: 11px; border-radius: 50%;
@@ -283,7 +283,7 @@ strong { color: var(--ink); }
 /* ---------- buttons ---------- */
 .cta-row { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; }
 .hero .cta-row { margin-top: 100px; justify-content: flex-end; }
-.btn { display: inline-block; padding: 13px 24px; border-radius: 9px; font-weight: 600; font-size: 0.95rem; }
+.btn { display: inline-block; padding: 13px 24px; border-radius: 9px; font-weight: 600; font-size: 0.95rem; background: none; border: none; cursor: pointer; }
 .btn.primary {
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
   color: #06231e;
@@ -369,28 +369,6 @@ strong { color: var(--ink); }
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 .article-card[hidden] { display: none !important; }
-.card-share {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(47,214,192,0.15);
-  color: var(--teal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  cursor: pointer;
-  z-index: 3;
-  transition: background .2s ease, transform .2s ease;
-}
-.card-share svg { width: 15px; height: 15px; }
-.card-share:hover { background: var(--pillar-color, var(--teal)); color: #050b09; transform: scale(1.08); }
-.card-share.card-copy { left: 48px; }
-.card-share.card-share-general { left: 88px; }
-.card-share.copied { background: var(--teal); color: #050b09; }
 .article-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 14px 34px rgba(0,0,0,0.35);
@@ -448,17 +426,7 @@ strong { color: var(--ink); }
     text-align: center;
   }
   .article-cards.layout-wide .article-card .accent-icon { width: 34px; height: 34px; }
-  .article-cards.layout-wide .article-card .card-body { justify-content: center; padding: 18px 24px 18px 190px; }
-  .article-cards.layout-wide .article-card .card-share {
-    width: 48px;
-    height: 48px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  .article-cards.layout-wide .article-card .card-share svg { width: 21px; height: 21px; }
-  .article-cards.layout-wide .article-card .card-share:hover { transform: translateY(-50%) scale(1.08); }
-  .article-cards.layout-wide .article-card .card-share.card-copy { left: 64px; }
-  .article-cards.layout-wide .article-card .card-share.card-share-general { left: 120px; }
+  .article-cards.layout-wide .article-card .card-body { justify-content: center; padding: 18px 24px; }
   .article-cards.layout-wide .article-card .card-title { font-size: 1.4rem; }
   .article-cards.layout-wide .article-card .card-desc { font-size: 0.9rem; -webkit-line-clamp: 2; }
 }
@@ -472,22 +440,6 @@ strong { color: var(--ink); }
   overflow: hidden;
 }
 .article-card.pending { opacity: 0.5; cursor: default; }
-
-.read-badge {
-  order: -1;
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--teal-light);
-  background: rgba(47,214,192,0.12);
-  border: 1px solid rgba(47,214,192,0.3);
-  border-radius: 999px;
-  padding: 2px 10px;
-}
-.article-card.is-read .card-title { color: var(--ink-soft); }
 .article-card.pending:hover { transform: none; box-shadow: none; border-color: var(--line); }
 
 .capsule {
@@ -692,6 +644,24 @@ footer.site .wrap span:last-child { display: none; }
 .closing-line { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 0.95rem; color: var(--ink-soft); }
 .closing-line em { color: var(--ink-soft); }
 
+/* ---------- knowledge-article light reading pane ---------- */
+/* מרכז הידע: לוח קריאה בהיר לגוף המאמר בלבד. הכותרת/הירו (מותגי) נשארים כהים
+   כמו בשאר האתר; רק תוכן <main> עובר לרקע בהיר עם פונט גדול יותר, לפי בחירת
+   שניאור (גרסה C) אחרי סקירת מוקאפ ב-23.08.26. */
+body.knowledge-article main { background: var(--cream); }
+body.knowledge-article main h2,
+body.knowledge-article main h3 { color: #123a32; }
+body.knowledge-article main p,
+body.knowledge-article main ul.plain,
+body.knowledge-article main ul.plain li { color: #2c3e38; font-size: 1.125rem; }
+body.knowledge-article main strong { color: #0c211c; }
+body.knowledge-article main .disclosure { background: rgba(28,182,161,0.14); border-color: rgba(28,182,161,0.4); color: #123a32; }
+body.knowledge-article main .disclosure strong { color: #0c6e5e; }
+body.knowledge-article main .closing-line { border-top-color: rgba(18,58,50,0.18); color: #4a5e57; }
+body.knowledge-article main .closing-line em { color: #4a5e57; }
+body.knowledge-article main .back-btn { color: #123a32; border-color: rgba(18,58,50,0.25); }
+body.knowledge-article main .back-btn:hover { color: #0c211c; border-color: var(--teal-deep); }
+
 /* ---------- contact form ---------- */
 .contact-form { margin: 8px 0 24px; }
 .contact-split { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: stretch; }
@@ -813,7 +783,7 @@ footer.site .wrap span:last-child { display: none; }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
 
-  .nav-row { flex-wrap: wrap; gap: 10px 0; padding: 14px 0; justify-content: center; text-align: center; }
+  .nav-row { flex-wrap: wrap; gap: 10px 12px; padding: 14px 0; justify-content: center; text-align: center; }
   .brand-home { flex-wrap: wrap; justify-content: center; gap: 4px 8px; }
   .brand-home .brand-name { font-size: 1.5rem; }
   .brand-home .brand-tagline { display: none; }
@@ -838,11 +808,6 @@ footer.site .wrap span:last-child { display: none; }
   .article-card { flex-direction: column; }
   .article-card .accent { width: 100%; flex-direction: row; border-left: none; border-bottom: 2px solid var(--pillar-color, var(--teal)); padding: 10px; min-height: 56px; }
   .article-card .accent-badge { margin-right: 8px; }
-  .card-share { top: 14px; transform: none; left: 14px; width: 34px; height: 34px; }
-  .card-share svg { width: 15px; height: 15px; }
-  .card-share.card-copy { left: 62px; }
-  .card-share.card-share-general { left: 110px; }
-  .card-share:hover { transform: scale(1.08); }
 
   .contact-split { gap: 24px; }
 
