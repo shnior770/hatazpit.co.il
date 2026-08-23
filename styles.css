@@ -707,6 +707,9 @@ body.knowledge-article main blockquote { background: rgba(28,182,161,0.12); colo
 .field textarea { resize: vertical; }
 .contact-submit { width: 100%; text-align: center; margin-top: 6px; }
 .contact-note { margin-top: 10px; font-size: 0.8rem; color: var(--ink-soft); opacity: 0.75; }
+.contact-whatsapp { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--teal); text-decoration: none; font-size: 0.9rem; }
+.contact-whatsapp:hover { text-decoration: underline; }
+.contact-whatsapp svg { flex-shrink: 0; }
 
 /* ---------- FAQ accordion ---------- */
 .faq { display: flex; flex-direction: column; gap: 10px; margin: 20px 0 32px; }

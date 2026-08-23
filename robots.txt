@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /knowledge/support-simulator.html
+
+Sitemap: https://hatazpit.co.il/sitemap.xml
