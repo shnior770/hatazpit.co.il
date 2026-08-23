@@ -71,8 +71,8 @@
     padding:16mm 14mm;
     display:flex; flex-direction:column; justify-content:center;
   }
-  /* עמודי תוכן (לא כריכה/סגירה): רקע בהיר לקריאה נוחה, מבטלים את משתני הצבע הכהים לגמרי */
-  .sheet.light{
+  /* כל עמודי החוברת (תוכן, כריכה וסגירה כאחד): רקע בהיר לקריאה נוחה ולהדפסה חסכונית בדיו, מבטלים את משתני הצבע הכהים לגמרי */
+  .sheet.light, .sheet.cover, .sheet.closing{
     background:#f8f4e9;
     --bg-raised:#efe8d4; --line:rgba(15,45,38,.14);
     --ink:#22322d; --ink-soft:#53645d;
@@ -104,23 +104,24 @@
   .brandmark .mark{ width:4.5pt; height:4.5pt; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-light)); display:inline-block; }
 
   /* ---------- כריכה ---------- */
-  .cover{
-    background:
-      radial-gradient(110mm 70mm at 20% -8%, rgba(47,214,192,0.22), transparent),
-      radial-gradient(90mm 60mm at 100% 10%, rgba(139,232,219,0.13), transparent),
-      var(--bg);
+  /* פס טורקיז מלא עליון לקיקר+כותרת, גוף בהיר מתחתיו — לא עוד עמוד-הירו כהה */
+  .cover{ padding:0; justify-content:flex-start; }
+  .cover .cover-band{
+    background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+    padding:20mm 14mm 16mm;
+    text-align:center;
   }
-  .cover .content{ text-align:center; }
   .cover .kicker{
-    display:inline-flex; align-items:center; gap:5pt; color:var(--ink-soft);
-    font-size:7.4pt; letter-spacing:.05em; margin-bottom:18pt;
-    border:.75pt solid var(--line); border-radius:99px; padding:5pt 13pt;
+    display:inline-flex; align-items:center; gap:5pt; color:rgba(255,255,255,.85);
+    font-size:7.4pt; letter-spacing:.05em; margin-bottom:14pt;
+    border:.75pt solid rgba(255,255,255,.4); border-radius:99px; padding:5pt 13pt;
   }
-  .cover .kicker .mark{ width:5pt; height:5pt; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-light)); display:inline-block; }
-  .cover h1{ font-size:20pt; line-height:1.3; color:var(--cream); font-weight:800; margin:0 0 12pt; letter-spacing:-.015em; }
-  .cover .subtitle{ font-size:10.5pt; color:var(--teal-light); font-weight:500; margin:0 0 16pt; }
+  .cover .kicker .mark{ width:5pt; height:5pt; border-radius:50%; background:#fff; display:inline-block; }
+  .cover h1{ font-size:20pt; line-height:1.3; color:#04211b; font-weight:800; margin:0; letter-spacing:-.015em; }
+  .cover .content{ flex:1; display:flex; flex-direction:column; text-align:center; padding:20pt 14mm 20mm; }
+  .cover .subtitle{ font-size:10.5pt; color:var(--teal-deep); font-weight:600; margin:0 0 16pt; }
   .cover .desc{ color:var(--ink-soft); font-size:9pt; margin:0 auto; }
-  .cover .brand-foot{ margin-top:30pt; display:flex; align-items:center; justify-content:center; gap:7pt; color:var(--cream); font-weight:700; font-size:10.5pt; }
+  .cover .brand-foot{ margin-top:auto; display:flex; align-items:center; justify-content:center; gap:7pt; color:var(--cream); font-weight:700; font-size:10.5pt; }
   .cover .brand-foot .mark{ width:7pt; height:7pt; border-radius:50%; background:linear-gradient(135deg,var(--teal),var(--teal-light)); display:inline-block; }
 
   /* ---------- תוכן עניינים ---------- */
@@ -146,13 +147,26 @@
   .card p{ margin:0; color:var(--ink-soft); font-size:10pt; line-height:1.54; }
 
   /* ---------- סגירה / CTA ---------- */
-  .closing .content{ text-align:center; }
+  /* אותה שפה כמו הכריכה: פס טורקיז מלא (למעלה בעמודי-מעבר, למטה בעמוד ה-CTA האחרון), גוף בהיר */
+  .closing{ padding:0; justify-content:flex-start; }
+  .closing .closing-band{
+    background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+    padding:16mm 14mm 18mm;
+    text-align:center;
+  }
+  .closing .closing-band .eyebrow{ color:rgba(255,255,255,.85); }
+  .closing .closing-band h2{ color:#04211b; margin:0; }
+  .closing .closing-band .btn{ margin-top:14pt; }
+  .closing .content{ flex:1; display:flex; flex-direction:column; justify-content:center; text-align:center; padding:0 14mm; }
   .closing h2{ text-align:center; }
   .closing p{ text-align:center; }
   .btn{ display:inline-block; font-weight:700; text-decoration:none; padding:9pt 26pt; border-radius:99px; font-size:9.4pt; margin-top:10pt; }
   .btn.primary{ background:linear-gradient(135deg,var(--teal),var(--teal-deep)); color:#04211b; }
+  .closing-band .btn.primary{ background:#fff; color:var(--teal-deep); }
   .signoff{ margin-top:18pt; color:var(--ink-soft); font-size:8.6pt; }
   .signoff .team{ color:var(--cream); font-weight:600; }
+  .closing-band .signoff{ color:rgba(248,244,233,.85); }
+  .closing-band .signoff .team{ color:#fff; }
 
   @media print{
     @page{ size:148mm 210mm; margin:0; }
@@ -172,9 +186,11 @@
 
 <!-- 01 · כריכה -->
 <section class="sheet cover" id="p1">
-  <div class="content">
+  <div class="cover-band">
     <span class="kicker"><span class="mark"></span> חוברת חינמית מאת התצפית</span>
     <h1>למה מנהלי מוסדות מעולים<br>מוותרים מראש על תקציבים ממשלתיים?</h1>
+  </div>
+  <div class="content">
     <p class="subtitle">(ולמה הבעיה היא ממש לא בך)</p>
     <p class="desc">מדריך מעשי לשליטה בבירוקרטיה, לנטרול חסמים, ולחזרה לעבודה שקטה ובטוחה.</p>
     <div class="brand-foot"><span class="mark"></span> התצפית</div>
@@ -425,9 +441,11 @@
 
 <!-- 18 · סגירה -->
 <section class="sheet closing" id="p18">
-  <div class="content">
+  <div class="closing-band">
     <span class="eyebrow">חלק ד'</span>
     <h2>השורה התחתונה</h2>
+  </div>
+  <div class="content">
     <p>עשרה כאבים, שלושה מנועים, שיטה אחת. הכרת השטח והיכולת לפרק את המנועים האלה הם ההבדל בין מוסד שמפספס תקציב בשקט לבין מוסד שיודע בדיוק לאן להסתכל.</p>
     <p>המערכת מורכבת ולעיתים לא הוגנת — זו לא בעיה אישית שלך. ברגע שיש לך מסגרת ברורה, הדברים משתנים.</p>
   </div>
@@ -437,9 +455,11 @@
 
 <!-- 19 · לא עוד יועץ — מצפן -->
 <section class="sheet closing" id="p19">
-  <div class="content">
+  <div class="closing-band">
     <span class="eyebrow">לפני שנפרדים</span>
     <h2>לא עוד יועץ</h2>
+  </div>
+  <div class="content">
     <p>אתה נשאר הקברניט. המטרה היא לא להוסיף תלות בגורם חיצוני, אלא ההפך — להחזיר אליך שליטה ועצמאות על תהליך שכיום מרגיש כמו ניחוש.</p>
     <p>כשהתמונה ברורה, ההחלטות קלות — בהירות ניהולית, לדעת בדיוק איפה אתה עומד, בכל רגע.</p>
   </div>
@@ -454,6 +474,8 @@
     <h2>על התצפית</h2>
     <p>אני שניאור. בודק כל כלי וכל תהליך בעצמי, משווה, מסנן, ולא כותב על משהו שאני לא בטוח בו ב-100%. בלי מניפולציות, בלי הבטחות נוצצות — רק מה שבאמת עובד בשטח.</p>
     <p>באתר יש מרכז ידע פתוח וחינמי, עם מדריכים בדיוק בסגנון החוברת הזו — ועוד תוכן שהולך ומתרחב.</p>
+  </div>
+  <div class="closing-band">
     <a class="btn primary" href="https://hatazpit.co.il">hatazpit.co.il</a>
     <div class="signoff">להתראות באתר,<br><span class="team">שניאור, התצפית</span></div>
   </div>
