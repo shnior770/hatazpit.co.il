@@ -88,7 +88,16 @@
 
   <div class="cta-row">
     <a class="btn primary" href="../contact.html">לתיאום שיחת בדיקת זכאות</a>
-    <a class="btn ghost cta-sim" href="support-simulator.html">בדקו את פוטנציאל התמיכות שלכם ←</a>
+    <a class="btn ghost cta-sim" href="support-simulator.html">
+      <span class="cta-sim-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 15a8 8 0 1 1 16 0" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12 15l4.5-5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="15" r="1.4" fill="currentColor"/>
+        </svg>
+      </span>
+      בדקו את פוטנציאל התמיכות שלכם ←
+    </a>
   </div>
   <p class="closing-line">רוצים את זה כחוברת קריאה שלמה, אחת, בשלוק אחד? <a href="../budget-guide.html">10 האתגרים ו-3 המנועים שגורמים למנהלים לוותר על תקציב שמגיע להם — חוברת חינמית להורדה</a>.</p>
   <p class="closing-line">מדריך זה הוא חלק ממרכז הידע של התצפית. <a class="back-btn" href="index.html" onclick="history.back();return false;">חזור</a>. ראו גם: <a href="how-to-apply-for-support.html">איך מגישים בקשה לתמיכה מהרשות המקומית</a>.</p>
@@ -96,34 +105,49 @@
 
 <a href="support-simulator.html" class="sim-bubble" aria-label="בדקו את פוטנציאל התמיכות שלכם">
   <span class="sim-bubble-icon">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 15a8 8 0 1 1 16 0" stroke="#06231e" stroke-width="2" stroke-linecap="round"/>
       <path d="M12 15l4.5-5.5" stroke="#06231e" stroke-width="2" stroke-linecap="round"/>
       <circle cx="12" cy="15" r="1.4" fill="#06231e"/>
     </svg>
   </span>
+  <span class="sim-bubble-text">בדקו פוטנציאל תמיכות</span>
 </a>
 <style>
-/* מסגרת בהירה לכפתור הסימולטור — כדי שלא "ייעלם" מול הכפתור המלא לצידו */
-.cta-sim { border-width: 2px; border-color: var(--teal); color: var(--teal-light); }
-.cta-sim:hover { border-color: var(--teal-light); color: var(--cream); }
+/* כפתור הסימולטור בתוך המאמר: קפסולה מלאה, עם אייקון מד-הפוטנציאל */
+body.knowledge-article main .btn.ghost.cta-sim {
+  display: inline-flex; align-items: center; gap: 8px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(28,182,161,0.45);
+  background: rgba(28,182,161,0.14);
+  color: #0c6e5e;
+  font-weight: 700;
+}
+body.knowledge-article main .btn.ghost.cta-sim:hover {
+  background: rgba(28,182,161,0.22);
+  border-color: #0c6e5e;
+  color: #123a32;
+}
+.cta-sim-icon { display: flex; flex-shrink: 0; }
 
 .sim-bubble {
   position: fixed;
   left: 20px;
   bottom: 20px;
   z-index: 60;
-  width: 60px; height: 60px;
-  border-radius: 50%;
+  height: 56px;
+  padding: 0 22px 0 20px;
+  border-radius: 999px;
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; gap: 10px;
   box-shadow: 0 6px 22px rgba(0,0,0,0.4), 0 0 0 5px rgba(47,214,192,0.18);
   transition: transform .15s ease;
   overflow: hidden;
 }
-.sim-bubble:hover { transform: scale(1.06); text-decoration: none; }
-.sim-bubble-icon { display: flex; position: relative; z-index: 1; }
-/* הברקה חולפת: קו אור עדין שחוצה את העיגול ואז נעצר — תופס עין בלי הבהוב מתמיד */
+.sim-bubble:hover { transform: scale(1.03); text-decoration: none; }
+.sim-bubble-icon { display: flex; position: relative; z-index: 1; flex-shrink: 0; }
+.sim-bubble-text { position: relative; z-index: 1; color: #06231e; font-weight: 700; font-size: 0.92rem; white-space: nowrap; }
+/* הברקה חולפת: קו אור עדין שחוצה את הקפסולה ואז נעצר — תופס עין בלי הבהוב מתמיד */
 .sim-bubble::after {
   content: '';
   position: absolute;
@@ -144,9 +168,8 @@
   .sim-bubble::after { animation: none; }
 }
 @media (max-width: 640px) {
-  .sim-bubble { left: 14px; bottom: 14px; width: 52px; height: 52px; }
-  .sim-bubble-icon { font-size: 1.3rem; }
-  .cta-sim { border-width: 3px; }
+  .sim-bubble { left: 14px; bottom: 14px; height: 50px; padding: 0 18px 0 16px; gap: 8px; }
+  .sim-bubble-text { font-size: 0.84rem; }
 }
 </style>
 

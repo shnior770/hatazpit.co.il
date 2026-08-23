@@ -671,7 +671,11 @@ body.knowledge-article main .closing-line { border-top-color: rgba(18,58,50,0.18
 body.knowledge-article main .closing-line em { color: #4a5e57; }
 body.knowledge-article main .back-btn { color: #123a32; border-color: rgba(18,58,50,0.25); }
 body.knowledge-article main .back-btn:hover { color: #0c211c; border-color: var(--teal-deep); }
-body.knowledge-article main blockquote { background: rgba(28,182,161,0.12); color: #123a32; }
+body.knowledge-article main blockquote { background: rgba(28,182,161,0.12); color: #123a32; border-right-color: rgba(28,182,161,0.4); }
+body.knowledge-article main .btn.ghost { color: #123a32; border-color: rgba(18,58,50,0.25); }
+body.knowledge-article main a { color: #0c6e5e; }
+body.knowledge-article main a:hover { color: #123a32; text-decoration: underline; }
+body.knowledge-article main .btn.ghost:hover { color: #0c211c; border-color: var(--teal-deep); }
 
 /* ---------- contact form ---------- */
 .contact-form { margin: 8px 0 24px; }
