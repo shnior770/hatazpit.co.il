@@ -307,29 +307,36 @@ footer.site .wrap { padding: 8px 24px; color: var(--ink-soft); font-size: 0.68re
 </footer>
 
 <script>
-// נתונים אמיתיים מתוך "תמיכות לפי סעיף 3א.gsheet" (2019–2025)
+// נתונים אמיתיים מתוך קובץ תמיכות סעיף 3א המלא (obudget.org, 2005–2026, עמותות בלבד)
 const CATEGORY_DATA = {
   education: {
     title: 'חינוך ומוסדות תורניים',
-    fact: 'ב-2025 בלבד, <b>156 מוסדות תורניים</b> קיבלו תמיכה ממוצעת של <b>₪484,937</b> במסגרת "תמיכה במוסדות תורניים" — חלקם עד לתקרה של <b>₪500,765</b>.',
-    level: 92
+    fact: 'מאז 2005 שולמו ל-<b>1,408 עמותות</b> בתחום מוסדות תורניים כ-<b>14,600 תמיכות</b> — חציון תשלום של <b>₪383,175</b>, ו-<b>44.8%</b> מהתשלומים עברו את ₪450,000. עמותה טיפוסית בתחום מקבלת תמיכה חוזרת, בממוצע <b>13 פעמים</b> — לא אירוע חד-פעמי.',
+    level: 90
   },
   settlement: {
     title: 'חינוך והתיישבות (גרעינים, מכינות)',
-    fact: 'תמיכה ב"גרעין חינוכי לאומי" חולקה ב-<b>94 מקרים</b> בממוצע של <b>₪490,952</b> למקרה — אחת התקנות הפעילות ביותר בקובץ.',
-    level: 88
+    fact: 'תמיכות ל-<b>474 עמותות</b> בתחום גרעינים חינוכיים ומכינות מגיעות לחציון של <b>₪271,776</b> לתשלום — כ-<b>20%</b> מהן חוצות את ₪450,000. פחות עמותות מתחרות כאן, אבל גם פחות תמיכה חוזרת (חציון <b>3 תשלומים</b> לעמותה).',
+    level: 68
   },
   culture: {
     title: 'תרבות ואמנות',
-    fact: 'ב"מחקר מורשת ואיגודים" בלבד ניתנו <b>25 תמיכות</b> בממוצע <b>₪485,534</b>, ועוד עשרות תמיכות נוספות במוזיאונים, פסטיבלים ותיאטראות — עד לתקרה של <b>₪500,731</b>.',
-    level: 85
+    fact: 'תחום התרבות והאמנות הוא הרחב ביותר — <b>2,028 עמותות שונות</b> קיבלו ביניהן כ-<b>20,000 תמיכות</b>. חציון התשלום הוא <b>₪150,064</b>, וכמעט <b>רבע</b> מהתשלומים נמוכים מ-₪50,000 — הרבה יותר תמיכות, אבל בממוצע קטנות משמעותית.',
+    level: 54
   },
   welfare: {
     title: 'רווחה וסיוע קהילתי',
-    fact: '"סיוע לפנימיות" חילק <b>33 תמיכות</b> בממוצע <b>₪482,886</b>, כשחלק מהגופים הגיעו כמעט לתקרה המלאה של <b>₪500,977</b>.',
-    level: 83
+    fact: 'ל-<b>680 עמותות</b> בתחום הרווחה והסיוע הקהילתי שולם חציון של <b>₪136,677</b> לתמיכה — וכ-<b>רבע</b> מהתשלומים נמוכים מ-₪50,000. התמיכות כאן אמיתיות ונגישות, אבל בטווח נמוך משמעותית מהתקרה של ₪500,000.',
+    level: 47
   }
 };
+
+function potentialTier(level) {
+  if (level >= 80) return { word: 'גבוה', tag: '🔥 פוטנציאל גבוה' };
+  if (level >= 60) return { word: 'בינוני-גבוה', tag: '✅ פוטנציאל בינוני-גבוה' };
+  if (level >= 40) return { word: 'בינוני', tag: '📊 פוטנציאל בינוני' };
+  return { word: 'ראשוני', tag: '🔍 פוטנציאל ראשוני' };
+}
 
 function goTo(n){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -360,7 +367,9 @@ function selectCategory(key){
 
 function showResult(key){
   const data = CATEGORY_DATA[key];
-  document.getElementById('result-title').textContent = 'הפוטנציאל בתחום "' + data.title + '": גבוה';
+  const tier = potentialTier(data.level);
+  document.getElementById('result-title').textContent = 'הפוטנציאל בתחום "' + data.title + '": ' + tier.word;
+  document.getElementById('meter-tag').textContent = tier.tag;
   document.getElementById('fact-box').innerHTML = data.fact;
   const fill = document.getElementById('meter-fill');
   fill.style.width = '0%';
