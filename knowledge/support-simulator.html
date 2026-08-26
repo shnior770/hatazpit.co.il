@@ -112,12 +112,15 @@ header.site{background:var(--bg);border-bottom:1px solid var(--line)}
 .data-card.no-data strong{line-height:1.5;color:var(--cream)}
 .data-card.no-data p{margin-top:8px}
 
-.reasons{margin:24px 0}
-.reasons h3{margin:0 0 11px;font-size:14px;color:var(--cream)}
-.reasons ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
-.reasons li{color:var(--ink);font-size:13px;line-height:1.5}
+.reasons{margin:24px 0;padding:20px 22px;border:1px solid rgba(47,214,192,.25);border-right:3px solid var(--teal);border-radius:14px;background:rgba(47,214,192,.06)}
+.reasons h3{margin:0 0 13px;font-size:18px;color:var(--cream)}
+.reasons ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.reasons li{color:var(--ink);font-size:15px;line-height:1.55}
 .reasons li span{color:var(--teal);margin-left:7px}
 .result-screen>.primary-button{width:100%}
+.secondary-button{display:block;width:100%;margin-top:12px;min-height:48px;padding:12px 18px;border:1px solid var(--teal);border-radius:12px;background:transparent;color:var(--teal-light);font-weight:700;cursor:pointer;transition:background .15s ease}
+.secondary-button:hover{background:rgba(47,214,192,.08)}
+.secondary-button:disabled{opacity:.6;cursor:default}
 .lead-screen{position:relative}
 .close-button{position:absolute;left:0;top:-12px;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink-soft);font-size:25px;cursor:pointer}
 .lead-screen form{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:24px}
@@ -196,20 +199,21 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
 
 <script>
   const DOMAINS={
-    welfare:{label:'רווחה וסיוע',ministry:'משרד הרווחה',entities:680,payments:3603,median:136677,icon:'לב'},
-    education:{label:'חינוך',ministry:'משרד החינוך',entities:584,payments:5507,median:280073,icon:'ספר'},
-    torah:{label:'מוסדות תורניים',ministry:'אגף מוסדות תורניים',entities:1408,payments:14594,median:383175,icon:'א'},
-    culture:{label:'תרבות וספורט',ministry:'משרד התרבות והספורט',entities:2028,payments:20017,median:150064,icon:'צליל'},
-    settlement:{label:'קהילה והתיישבות',ministry:'משרד ההתיישבות',entities:388,payments:995,median:142070,icon:'בית'},
-    health:{label:'בריאות',ministry:'משרד הבריאות',entities:303,payments:952,median:54709,icon:'+'},
-    aliyah:{label:'עלייה וקליטה',ministry:'משרד העלייה והקליטה',entities:312,payments:1276,median:39794,icon:'עוגן'},
-    agriculture:{label:'חקלאות וביטחון מזון',ministry:'משרד החקלאות וביטחון המזון',entities:172,payments:384,median:178815,icon:'עלה'},
-    environment:{label:'סביבה וקיימות',ministry:'המשרד להגנת הסביבה',entities:88,payments:341,median:123930,icon:'טיפה'},
+    welfare:{label:'רווחה וסיוע',ministry:'משרד הרווחה',entities:680,payments:3603,median:136677,icon:'❤️'},
+    education:{label:'חינוך',ministry:'משרד החינוך',entities:584,payments:5507,median:280073,icon:'📖'},
+    torah:{label:'מוסדות תורניים',ministry:'אגף מוסדות תורניים',entities:1408,payments:14594,median:383175,icon:'✡️'},
+    culture:{label:'תרבות וספורט',ministry:'משרד התרבות והספורט',entities:2028,payments:20017,median:150064,icon:'🎭'},
+    settlement:{label:'קהילה והתיישבות',ministry:'משרד ההתיישבות',entities:388,payments:995,median:142070,icon:'🏘️'},
+    health:{label:'בריאות',ministry:'משרד הבריאות',entities:303,payments:952,median:54709,icon:'⚕️'},
+    aliyah:{label:'עלייה וקליטה',ministry:'משרד העלייה והקליטה',entities:312,payments:1276,median:39794,icon:'🧭'},
+    agriculture:{label:'חקלאות וביטחון מזון',ministry:'משרד החקלאות וביטחון המזון',entities:172,payments:384,median:178815,icon:'🌾'},
+    environment:{label:'סביבה וקיימות',ministry:'המשרד להגנת הסביבה',entities:88,payments:341,median:123930,icon:'💧'},
     other:{label:'תחום אחר',ministry:'משרדי הממשלה',icon:'…'}
   };
   const QUESTIONS=[
-    {key:'legal',eyebrow:'קודם כל, מי אתם?',title:'איך הארגון שלכם רשום?',options:[['nonprofit','עמותה, חל״צ או הקדש ציבורי','גוף ללא מטרות רווח'],['public','רשות או מוסד ציבורי אחר'],['unknown','לא בטוח מה ההגדרה המדויקת']]},
-    {key:'tenure',eyebrow:'קצת על הפעילות',title:'כמה זמן הארגון פעיל בפועל?',note:'ותק משנה בהרבה מסלולים, אבל לא בכולם.',options:[['under2','פחות משנתיים'],['2to4','שנתיים עד ארבע'],['5plus','חמש שנים ומעלה']]},
+    {key:'registered',eyebrow:'לפני הכול',title:'האם העמותה רשומה?',options:[['yes','כן, רשומה כחוק'],['no','לא, עדיין לא']]},
+    {key:'legal',eyebrow:'מבנה משפטי',title:'איך הארגון שלכם רשום?',options:[['nonprofit','עמותה, חל״צ או הקדש ציבורי','גוף ללא מטרות רווח'],['public','רשות או מוסד ציבורי אחר'],['unknown','לא בטוח מה ההגדרה המדויקת']]},
+    {key:'tenure',eyebrow:'קצת על הפעילות',title:'כמה זמן הארגון פעיל?',note:'ותק משנה בהרבה מסלולים, אבל לא בכולם.',options:[['under2','פחות משנתיים'],['2to4','שנתיים עד ארבע'],['5plus','חמש שנים ומעלה']]},
     {key:'compliance',eyebrow:'סטטוס רגולטורי',title:'יש לכם אישור ניהול תקין תקף?',options:[['yes','כן, יש לנו אישור תקף'],['no','אין לנו כרגע']]},
     {key:'turnover',eyebrow:'קצת על ההיקף הכספי',title:'מה היקף המחזור הכספי השנתי של הארגון?',options:[['under500k','עד 500 אלף ₪'],['500kto8m','500 אלף עד 8 מיליון ₪'],['over8m','מעל 8 מיליון ₪']]},
     {key:'domain',eyebrow:'איפה אתם פועלים?',title:'מהו תחום הפעילות המרכזי?',note:'בחרו את הכי קרוב. זו חלוקה כללית בלבד.'},
@@ -234,11 +238,65 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
     if(score>=7)return{tone:'strong',kicker:'יש כאן סימנים שכדאי לבדוק',title:'יכול להיות שאתם משאירים הזדמנות על השולחן',intro:'זו לא קביעת זכאות. אבל יש כאן כמה סימנים טובים ביחד — סוג הארגון, הוותק, ושאף אחד לא עוקב אצלכם באופן קבוע. שווה בדיקה ממוקדת.'};
     if(score>=4)return{tone:'medium',kicker:'שווה בדיקה ראשונית',title:'יש אצלכם כמה סימנים מעניינים',intro:'לא כל קול קורא יתאים לכם, אבל יש כאן מספיק כדי לבדוק במקום לנחש.'};
     return{tone:'open',kicker:'התמונה עדיין פתוחה',title:'אי אפשר לקבוע בלי בירור קצר נוסף',intro:'לא מצאנו כאן התאמה ברורה, אבל גם לא פסלנו כלום. לפעמים המסלול הנכון מסתתר בפרטים שלא שאלנו.'}}
+  function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
+  function wrapLines(ctx,text,maxWidth){const words=text.split(' ');const lines=[];let line='';for(const w of words){const test=line?line+' '+w:w;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line);return lines}
+  async function buildResultImage(r,d){
+    if(document.fonts&&document.fonts.ready){try{await document.fonts.ready}catch(e){}}
+    const W=1080,H=1350,M=80,R=W-M;
+    const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
+    const ctx=canvas.getContext('2d');
+    const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#0c211c');bg.addColorStop(1,'#163d33');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    ctx.direction='rtl';ctx.textAlign='right';
+    ctx.fillStyle='#f5efe0';ctx.font='700 46px Rubik, Segoe UI, sans-serif';
+    ctx.fillText('התצפית',R,120);
+    ctx.fillStyle='#a9c2ba';ctx.font='400 28px Rubik, Segoe UI, sans-serif';
+    ctx.fillText('בדיקת הזדמנות תמיכה',R,164);
+    const toneColors={strong:'#2fd6c0',medium:'#f5b23c',open:'#ef6461'};
+    const toneColor=toneColors[r.tone]||'#2fd6c0';
+    ctx.font='800 26px Rubik, Segoe UI, sans-serif';
+    const kickerText=r.kicker;const kickerWidth=ctx.measureText(kickerText).width;
+    roundRect(ctx,R-kickerWidth-48,220,kickerWidth+48,58,29);
+    ctx.fillStyle='rgba(255,255,255,0.08)';ctx.fill();
+    ctx.strokeStyle=toneColor;ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle=toneColor;ctx.fillText(kickerText,R-24,258);
+    ctx.fillStyle='#f5efe0';ctx.font='700 48px Rubik, Segoe UI, sans-serif';
+    let y=360;
+    for(const line of wrapLines(ctx,r.title,W-M*2)){ctx.fillText(line,R,y);y+=58}
+    y+=20;
+    ctx.fillStyle='#a9c2ba';ctx.font='400 30px Rubik, Segoe UI, sans-serif';
+    for(const line of wrapLines(ctx,r.intro,W-M*2)){ctx.fillText(line,R,y);y+=42}
+    if(d&&d.entities){
+      y+=50;
+      roundRect(ctx,M,y,W-M*2,260,20);
+      ctx.fillStyle='rgba(245,178,60,.09)';ctx.fill();
+      ctx.strokeStyle='rgba(245,178,60,.3)';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#f5efe0';ctx.font='700 30px Rubik, Segoe UI, sans-serif';
+      ctx.fillText('מה קרה בתחום '+d.label+' בפועל?',R-40,y+56);
+      const cols=[['עמותות נתמכות',num(d.entities)],['תשלומי תמיכה',num(d.payments)],['חציון לתשלום','₪'+num(d.median)]];
+      const colW=(W-M*2-80)/3;
+      cols.forEach((c,i)=>{
+        const cx=R-40-i*colW;
+        ctx.textAlign='right';
+        ctx.fillStyle='#f5b23c';ctx.font='800 44px Rubik, Segoe UI, sans-serif';
+        ctx.fillText(c[1],cx,y+150);
+        ctx.fillStyle='#a9c2ba';ctx.font='400 22px Rubik, Segoe UI, sans-serif';
+        ctx.fillText(c[0],cx,y+190);
+      });
+      y+=300;
+    }
+    ctx.fillStyle='rgba(255,255,255,0.15)';ctx.fillRect(M,H-140,W-M*2,1);
+    ctx.fillStyle='#8be8db';ctx.font='700 30px Rubik, Segoe UI, sans-serif';
+    ctx.fillText('hatazpit.co.il',R,H-80);
+    ctx.fillStyle='#a9c2ba';ctx.font='400 22px Rubik, Segoe UI, sans-serif';
+    ctx.fillText('בדקו גם אתם — בהירות ניהולית לעמותות',R,H-44);
+    return new Promise(resolve=>canvas.toBlob(resolve,'image/png'));
+  }
   function render(){
-    if(state.screen==='entry')main.innerHTML=`<div class="entry-screen screen-enter"><span class="pill">בדיקת הזדמנות חינמית · כדקה</span><h1>יכול להיות שהארגון שלכם משאיר תמיכה ממשלתית על השולחן?</h1><p class="lead-copy">ענו על שבע שאלות קצרות וקבלו תמונת מצב ראשונית — על בסיס נתוני תמיכות אמיתיים לפי סעיף 3א.</p>${button('בואו נבדוק','start','←')}<p class="microcopy">ללא התחייבות · אין צורך במסמכים · זו אינה בדיקת זכאות</p></div>`;
+    if(state.screen==='entry')main.innerHTML=`<div class="entry-screen screen-enter"><h1>יכול להיות שהארגון שלכם משאיר תמיכה ממשלתית על השולחן?</h1><p class="lead-copy">ענו על שבע שאלות קצרות וקבלו תמונת מצב ראשונית — על בסיס נתוני תמיכות אמיתיים לפי סעיף 3א.</p>${button('בואו נבדוק','start','←')}<p class="microcopy">ללא התחייבות · אין צורך במסמכים · זו אינה בדיקת זכאות</p></div>`;
     if(state.screen==='question'){const q=QUESTIONS[state.step];let choices='';if(q.key==='domain'){choices=`<div class="domain-grid">${Object.entries(DOMAINS).map(([key,d])=>`<button class="domain-option" data-value="${key}"><span class="domain-icon">${esc(d.icon)}</span><span>${esc(d.label)}</span></button>`).join('')}</div>`}else{choices=`<div class="options-list">${q.options.map(o=>`<button class="answer-option" data-value="${o[0]}"><span><strong>${esc(o[1])}</strong>${o[2]?`<small>${esc(o[2])}</small>`:''}</span><span class="option-arrow">←</span></button>`).join('')}</div>`}main.innerHTML=`<div class="question-screen screen-enter"><div class="progress-row"><span>שאלה ${state.step+1} מתוך ${QUESTIONS.length}</span><div class="progress-track"><div class="progress-value" style="width:${((state.step+1)/QUESTIONS.length)*100}%"></div></div></div><span class="question-eyebrow">${esc(q.eyebrow)}</span><h2>${esc(q.title)}</h2>${q.note?`<p class="question-note">${esc(q.note)}</p>`:''}${choices}${state.step>0?'<button class="back-button" id="back">חזרה לשאלה הקודמת</button>':''}</div>`}
-    if(state.screen==='result'){const r=getResult(),a=state.answers,d=DOMAINS[a.domain]||DOMAINS.other;const data=d.entities?`<div class="data-card"><div class="data-card-head"><span>מה קרה בתחום ${esc(d.label)} בפועל?</span><span class="data-source">נתוני עבר</span></div><div class="metrics"><div><strong>${num(d.entities)}</strong><span>עמותות נתמכות</span></div><div><strong>${num(d.payments)}</strong><span>תשלומי תמיכה</span></div><div><strong>₪${num(d.median)}</strong><span>חציון לתשלום</span></div></div><p>אלה תשלומים שכבר קרו בעבר, דרך ${esc(d.ministry)}. הם לא אומרים כלום על הזכאות שלכם או על הסכום שתקבלו.</p></div>`:`<div class="data-card no-data"><strong>התחום שלכם לא נכנס יפה לקופסה אחת — וזה דווקא סימן טוב לבדיקה אנושית.</strong><p>קולות קוראים רבים חוצים תחומים ומשרדים, ולכן סיווג כללי עלול לפספס הזדמנות רלוונטית.</p></div>`;let reasons=[];if(['2to4','5plus'].includes(a.tenure))reasons.push('יש לארגון ותק — סימן בסיס שחוזר במסלולים רבים.');if(['never','unknown'].includes(a.history))reasons.push('לא מיציתם עד היום את ערוץ התמיכות באופן ברור.');if(a.history==='received')reasons.push('כבר הוכחתם יכולת לעבוד מול מסלול ממשלתי — עכשיו אפשר לבדוק הרחבה.');if(a.history==='applied')reasons.push('ניסיון הגשה קודם יכול לעזור לזהות במהירות מה השתנה ומה חסר.');if(['none','rarely','sometimes'].includes(a.monitoring))reasons.push('אין אצלכם מעקב רציף, ולכן קל לפספס חלונות הגשה קצרים.');if(a.monitoring==='professional')reasons.push('כבר יש לכם מעקב מקצועי; בדיקה נוספת יכולה להתמקד במסלולים משלימים.');if(d.entities)reasons.push('המאגר מציג פעילות ממשלתית מוכחת בתחום שבחרתם.');if(a.compliance==='yes')reasons.push('יש לכם אישור ניהול תקין תקף — תנאי סף שכבר עברתם ברוב המסלולים.');const complianceWarning=a.compliance==='no'?`<div class="data-card no-data"><strong>שימו לב: אין לכם כרגע אישור ניהול תקין תקף.</strong><p>ברוב מסלולי התמיכה זהו תנאי סף. אפשר וכדאי להמשיך ולבדוק בכל זאת, אבל שווה לטפל בזה במקביל — <a href="orderly-management.html">כל מה שצריך לדעת על ניהול תקין</a>.</p></div>`:'';main.innerHTML=`<div class="result-screen screen-enter"><span class="result-kicker ${r.tone}">${esc(r.kicker)}</span><h2>${esc(r.title)}</h2><p class="result-intro">${esc(r.intro)}</p>${data}${complianceWarning}<div class="reasons"><h3>למה שווה לבדוק?</h3><ul>${reasons.map(x=>`<li><span>✓</span>${esc(x)}</li>`).join('')}</ul></div>${button('בדקו מה עשוי להתאים לנו','lead','←')}<button class="restart-button" id="reset">התחל מחדש</button></div>`;track('support_check_result_tier',{tier:r.tone})}
-    if(state.screen==='lead')main.innerHTML=`<div class="lead-screen screen-enter"><button class="close-button" id="close" aria-label="חזרה לתוצאה">×</button><span class="pill">השלב הבא</span><h2>בדיקה קצרה עם בן אדם שמכיר את השטח</h2><p>השאירו פרטים ונבדוק אילו מסלולים מתאימים לארגון שלכם — בלי הבטחות לפני שרואים את התמונה המלאה.</p><div class="disclosure"><strong>גילוי נאות:</strong> יש לנו הסכם שיתוף פעולה עסקי עם 'משאבים'. הבדיקה כאן היא של התצפית, ואנחנו אלה שיחזרו אליכם ראשונים — ההסכם לא משנה את ההמלצה, אבל מגיע לכם לדעת שהוא קיים. אם יהיה רלוונטי, נחבר אתכם אליהם בהמשך.</div><p>בלחיצה על שלח תיפתח תיבת הדואר האלקטרוני עם מייל מוכן לשליחה.</p><form id="lead-form"><label>שם מלא<input required name="name" autocomplete="name"></label><label>שם הארגון<input required name="organization" autocomplete="organization"></label><label>טלפון<input required name="phone" type="tel" autocomplete="tel"></label>${button('שלח בקשה','submit','←')}</form></div>`;
+    if(state.screen==='result'){const r=getResult(),a=state.answers,d=DOMAINS[a.domain]||DOMAINS.other;const data=d.entities?`<div class="data-card"><div class="data-card-head"><span>מה קרה בתחום ${esc(d.label)} בפועל?</span></div><div class="metrics"><div><strong>${num(d.entities)}</strong><span>עמותות נתמכות</span></div><div><strong>${num(d.payments)}</strong><span>תשלומי תמיכה</span></div><div><strong>₪${num(d.median)}</strong><span>חציון לתשלום</span></div></div><p>אלה תשלומים שכבר קרו בעבר, דרך ${esc(d.ministry)}. הם לא אומרים כלום על הזכאות שלכם או על הסכום שתקבלו.</p></div>`:`<div class="data-card no-data"><strong>התחום שלכם לא נכנס יפה לקופסה אחת — וזה דווקא סימן טוב לבדיקה אנושית.</strong><p>קולות קוראים רבים חוצים תחומים ומשרדים, ולכן סיווג כללי עלול לפספס הזדמנות רלוונטית.</p></div>`;let reasons=[];if(['2to4','5plus'].includes(a.tenure))reasons.push('יש לארגון ותק — סימן בסיס שחוזר במסלולים רבים.');if(['never','unknown'].includes(a.history))reasons.push('לא מיציתם עד היום את ערוץ התמיכות באופן ברור.');if(a.history==='received')reasons.push('כבר הוכחתם יכולת לעבוד מול מסלול ממשלתי — עכשיו אפשר לבדוק הרחבה.');if(a.history==='applied')reasons.push('ניסיון הגשה קודם יכול לעזור לזהות במהירות מה השתנה ומה חסר.');if(['none','rarely','sometimes'].includes(a.monitoring))reasons.push('אין אצלכם מעקב רציף, ולכן קל לפספס חלונות הגשה קצרים.');if(a.monitoring==='professional')reasons.push('כבר יש לכם מעקב מקצועי; בדיקה נוספת יכולה להתמקד במסלולים משלימים.');if(d.entities)reasons.push('המאגר מציג פעילות ממשלתית מוכחת בתחום שבחרתם.');if(a.compliance==='yes')reasons.push('יש לכם אישור ניהול תקין תקף — תנאי סף שכבר עברתם ברוב המסלולים.');const complianceWarning=a.compliance==='no'?`<div class="data-card no-data"><strong>שימו לב: אין לכם כרגע אישור ניהול תקין תקף.</strong><p>ברוב מסלולי התמיכה זהו תנאי סף. אפשר וכדאי להמשיך ולבדוק בכל זאת, אבל שווה לטפל בזה במקביל — <a href="orderly-management.html">כל מה שצריך לדעת על ניהול תקין</a>.</p></div>`:'';main.innerHTML=`<div class="result-screen screen-enter"><span class="result-kicker ${r.tone}">${esc(r.kicker)}</span><h2>${esc(r.title)}</h2><p class="result-intro">${esc(r.intro)}</p>${data}${complianceWarning}<div class="reasons"><h3>למה שווה לבדוק?</h3><ul>${reasons.map(x=>`<li><span>✓</span>${esc(x)}</li>`).join('')}</ul></div>${button('בדקו מה עשוי להתאים לנו','lead','←')}<button type="button" class="secondary-button" id="share-result">שיתוף התוצאה בוואטסאפ</button><button class="restart-button" id="reset">התחל מחדש</button></div>`;track('support_check_result_tier',{tier:r.tone})}
+    if(state.screen==='lead')main.innerHTML=`<div class="lead-screen screen-enter"><button class="close-button" id="close" aria-label="חזרה לתוצאה">×</button><span class="pill">השלב הבא</span><h2>בדיקה קצרה עם בן אדם שמכיר את השטח</h2><p>השאירו פרטים ונבדוק אילו מסלולים מתאימים לארגון שלכם — בלי הבטחות לפני שרואים את התמונה המלאה.</p><div class="disclosure"><strong>גילוי נאות:</strong> יש לנו שיתוף פעולה עסקי עם 'משאבים', חברה שמסייעת לעמותות במימוש והגשת בקשות לתמיכות מהמדינה. הבדיקה כאן היא של התצפית, ואנחנו אלה שיחזרו אליכם ראשונים — ההסכם לא משנה את ההמלצה, אבל מגיע לכם לדעת שהוא קיים. אם יהיה רלוונטי, נחבר אתכם אליהם בהמשך.</div><p>בלחיצה על שלח תיפתח תיבת הדואר האלקטרוני עם מייל מוכן לשליחה.</p><form id="lead-form"><label>שם מלא<input required name="name" autocomplete="name"></label><label>שם הארגון<input required name="organization" autocomplete="organization"></label><label>טלפון<input required name="phone" type="tel" autocomplete="tel"></label>${button('שלח בקשה','submit','←')}</form></div>`;
     if(state.screen==='thanks')main.innerHTML=`<div class="thanks-screen screen-enter"><div class="thanks-mark">✓</div><h2>קיבלנו, תודה!</h2><p>נפתח עבורכם מייל מוכן עם הפרטים שמילאתם — פשוט לשלוח אותו, ונחזור אליכם בהקדם.</p><p class="mail-fallback">לא נפתחה תוכנית מייל אצלכם? אפשר לשלוח ידנית ל-<a href="${state.lastMailto||'mailto:hatazpit.office@gmail.com'}" id="mail-fallback-link">hatazpit.office@gmail.com</a><button type="button" class="copy-email-btn" id="copy-lead-email">העתק כתובת</button></p>${button('בדקו ארגון נוסף','reset')}</div>`;
     contextPanel.classList.toggle('hide-on-mobile', state.screen==='question');
     bind();
@@ -262,6 +320,7 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
         'טלפון: '+phone,
         '',
         'תחום: '+d.label,
+        'העמותה רשומה: '+answerLabel('registered',a.registered),
         'מבנה משפטי: '+answerLabel('legal',a.legal),
         'ותק: '+answerLabel('tenure',a.tenure),
         'ניהול תקין: '+answerLabel('compliance',a.compliance),
@@ -279,8 +338,32 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
       state.lastMailto=mailto;
       window.location.href=mailto;
       state.screen='thanks';render();
+      document.querySelector('.simulator-shell')?.scrollIntoView({behavior:'smooth',block:'start'});
     });
     document.getElementById('reset')?.addEventListener('click',()=>{state.screen='entry';state.step=0;state.answers={};render()});
+    document.getElementById('share-result')?.addEventListener('click',async()=>{
+      const btn=document.getElementById('share-result');
+      const original=btn.textContent;
+      btn.disabled=true;btn.textContent='מכין תמונה…';
+      try{
+        const a=state.answers,r=getResult(),d=DOMAINS[a.domain]||DOMAINS.other;
+        const blob=await buildResultImage(r,d);
+        if(!blob) throw new Error('no-blob');
+        const file=new File([blob],'hatazpit-support-check.png',{type:'image/png'});
+        if(navigator.canShare&&navigator.canShare({files:[file]})){
+          await navigator.share({files:[file],title:'התצפית — בדיקת הזדמנות תמיכה',text:r.title});
+          track('support_check_result_shared',{method:'web-share'});
+        }else{
+          const url=URL.createObjectURL(blob);
+          const link=document.createElement('a');
+          link.href=url;link.download='hatazpit-support-check.png';
+          document.body.appendChild(link);link.click();document.body.removeChild(link);
+          setTimeout(()=>URL.revokeObjectURL(url),4000);
+          track('support_check_result_shared',{method:'download'});
+        }
+      }catch(e){}
+      btn.disabled=false;btn.textContent=original;
+    });
     const copyBtn=document.getElementById('copy-lead-email');
     if(copyBtn&&navigator.clipboard)copyBtn.addEventListener('click',()=>{navigator.clipboard.writeText('hatazpit.office@gmail.com').then(()=>{const original=copyBtn.textContent;copyBtn.textContent='הועתק!';setTimeout(()=>{copyBtn.textContent=original},1800)})});
   }

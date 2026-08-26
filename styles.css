@@ -733,12 +733,8 @@ body.knowledge-article main .btn.ghost:hover { color: #0c211c; border-color: var
 .field textarea { resize: vertical; }
 .contact-submit { width: 100%; text-align: center; margin-top: 6px; }
 .contact-note { margin-top: 10px; font-size: 0.8rem; color: var(--ink-soft); opacity: 0.75; }
-.mail-fallback { margin-top: 12px; font-size: 0.85rem; color: var(--ink-soft); }
-.mail-fallback a { color: var(--teal); }
-.contact-whatsapp { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--teal); text-decoration: none; font-size: 0.9rem; }
-.contact-whatsapp:hover { text-decoration: underline; }
-.contact-whatsapp svg { flex-shrink: 0; }
-
+.mail-fallback { margin-top: 14px; padding: 12px 16px; border: 1px solid rgba(28,182,161,0.35); background: rgba(28,182,161,0.08); border-radius: 8px; font-size: 0.9rem; color: var(--ink-soft); }
+.mail-fallback a { color: var(--teal); font-weight: 700; }
 .whatsapp-float {
   position: fixed;
   left: 24px;
@@ -750,12 +746,12 @@ body.knowledge-article main .btn.ghost:hover { color: #0c211c; border-color: var
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--teal);
-  color: #0c211c;
+  background: #25D366;
+  color: #ffffff;
   box-shadow: 0 6px 20px rgba(0,0,0,0.35);
   transition: transform .15s ease, background .15s ease;
 }
-.whatsapp-float:hover { transform: scale(1.06); background: var(--teal-light); }
+.whatsapp-float:hover { transform: scale(1.06); background: #20bd5a; }
 body.cookie-banner-open .whatsapp-float { bottom: 96px; transition: bottom .2s ease; }
 @media (max-width: 640px) {
   .whatsapp-float { left: 16px; bottom: 16px; width: 50px; height: 50px; }
