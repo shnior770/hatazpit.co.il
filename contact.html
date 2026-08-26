@@ -81,9 +81,14 @@
         <textarea id="cf-message" placeholder="איך אפשר לעזור?" required></textarea>
       </div>
       <button type="submit" class="btn primary contact-submit">שליחת הפנייה</button>
+      <p class="mail-fallback" id="mail-fallback" hidden>לא נפתחה תוכנית מייל? אפשר לשלוח ידנית ל-<a href="mailto:hatazpit.office@gmail.com" id="mail-fallback-link">hatazpit.office@gmail.com</a></p>
     </div>
   </form>
 </main>
+
+<a class="whatsapp-float" href="https://wa.me/972503833809" target="_blank" rel="noopener" aria-label="פתיחת שיחה בוואטסאפ">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3.5c-4.7 0-8.5 3.6-8.5 8 0 1.7.5 3.2 1.5 4.5l-1 3.5 3.7-1c1.3.7 2.7 1 4.3 1 4.7 0 8.5-3.6 8.5-8s-3.8-8-8.5-8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8.7 8.3c.2-.5.4-.5.6-.5h.5c.2 0 .4 0 .5.3.2.4.6 1.4.7 1.5.1.1.1.3 0 .4-.1.2-.2.3-.3.4-.1.1-.3.3-.4.4-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.5 1.4.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.5.4 0 .2 0 1-.4 1.5-.4.5-1.4 1-2.2 1-.8 0-1.7-.1-3.4-.9-2.4-1.2-4-3.4-4.1-3.6-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.8-2z"/></svg>
+</a>
 
 <footer class="site">
   <div class="wrap">
@@ -91,6 +96,7 @@
     <span><a href="accessibility.html">נגישות</a></span>
     <span><a href="privacy.html">פרטיות</a></span>
     <span><button type="button" id="cookie-settings" class="footer-link-btn">הגדרות עוגיות</button></span>
+    <span><a href="disclaimer.html">כתב ויתור</a></span>
     <span><a href="sitemap.html">מפת אתר</a></span>
     <span><a href="contact.html">צור קשר</a></span>
   </div>
@@ -108,8 +114,27 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   var mailto = 'mailto:hatazpit.office@gmail.com'
     + '?subject=' + encodeURIComponent(subject)
     + '&body=' + encodeURIComponent(body);
+  document.getElementById('mail-fallback-link').href = mailto;
+  document.getElementById('mail-fallback').hidden = false;
   window.location.href = mailto;
 });
+
+(function () {
+  var nameField = document.getElementById('cf-name');
+  var messageField = document.getElementById('cf-message');
+  var waLinks = document.querySelectorAll('.contact-whatsapp, .whatsapp-float');
+  function updateWhatsappLinks() {
+    var name = nameField.value.trim();
+    var message = messageField.value.trim();
+    var greeting = name ? ('שלום, שמי ' + name + '.') : 'שלום,';
+    var text = greeting + (message ? (' ' + message) : ' פניתי אליכם דרך אתר התצפית.');
+    var url = 'https://wa.me/972503833809?text=' + encodeURIComponent(text);
+    waLinks.forEach(function (a) { a.href = url; });
+  }
+  nameField.addEventListener('input', updateWhatsappLinks);
+  messageField.addEventListener('input', updateWhatsappLinks);
+  updateWhatsappLinks();
+})();
 </script>
 </body>
 </html>

@@ -17,6 +17,7 @@
 
   var banner;
   function showBanner() {
+    document.body.classList.add('cookie-banner-open');
     banner = document.createElement('div');
     banner.className = 'cookie-banner';
     banner.setAttribute('role', 'dialog');
@@ -35,6 +36,7 @@
     requestAnimationFrame(function () { banner.classList.add('is-visible'); });
   }
   function hideBanner() {
+    document.body.classList.remove('cookie-banner-open');
     if (!banner || !banner.parentNode) return;
     var el = banner;
     el.classList.remove('is-visible');
@@ -94,8 +96,42 @@
   var minutes = Math.max(1, Math.round(words / 200));
   var badge = document.createElement('p');
   badge.className = 'reading-time';
-  badge.textContent = '⏱ ' + minutes + ' דקות קריאה';
+  badge.textContent = '⏱ ' + (minutes === 1 ? 'דקת קריאה אחת' : minutes + ' דקות קריאה');
   subheroEl.appendChild(badge);
+})();
+
+(function () {
+  // mark this article as read (localStorage only, no server) — read by the hub below to show a "read" strip
+  if (window.location.pathname.indexOf('/knowledge/') === -1) return;
+  if (document.querySelector('.knowledge-screen')) return;
+  var slug = window.location.pathname.split('/').pop();
+  if (!slug) return;
+  var KEY = 'hatazpit_read_articles';
+  try {
+    var read = JSON.parse(localStorage.getItem(KEY) || '[]');
+    if (read.indexOf(slug) === -1) {
+      read.push(slug);
+      localStorage.setItem(KEY, JSON.stringify(read));
+    }
+  } catch (e) {}
+})();
+
+(function () {
+  // knowledge hub: add a "read" strip to cards whose article was already visited
+  if (!document.querySelector('.knowledge-screen')) return;
+  var read = [];
+  try { read = JSON.parse(localStorage.getItem('hatazpit_read_articles') || '[]'); } catch (e) {}
+  if (!read.length) return;
+  document.querySelectorAll('.article-card').forEach(function (card) {
+    var href = card.getAttribute('href');
+    var slug = href ? href.split('/').pop() : null;
+    if (!slug || read.indexOf(slug) === -1) return;
+    card.classList.add('is-read');
+    var strip = document.createElement('span');
+    strip.className = 'read-strip';
+    strip.textContent = 'נקרא';
+    card.insertBefore(strip, card.firstChild);
+  });
 })();
 
 (function () {
@@ -118,6 +154,18 @@
     dots.push(a);
   });
   document.body.appendChild(rail);
+
+  // back-to-top button (mobile only, via CSS) — same "long article" pages as the rail above
+  var toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'back-to-top';
+  toTop.setAttribute('aria-label', 'חזרה לראש העמוד');
+  toTop.innerHTML = '↑';
+  document.body.appendChild(toTop);
+  toTop.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  window.addEventListener('scroll', function () {
+    toTop.classList.toggle('is-visible', window.scrollY > 600);
+  }, { passive: true });
 
   if (typeof IntersectionObserver === 'undefined') return;
   var observer = new IntersectionObserver(function (entries) {

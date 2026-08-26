@@ -141,10 +141,12 @@ body.knowledge-article main .btn.ghost.cta-sim:hover {
   background: linear-gradient(135deg, var(--teal), var(--teal-deep));
   display: flex; align-items: center; gap: 10px;
   box-shadow: 0 6px 22px rgba(0,0,0,0.4), 0 0 0 5px rgba(47,214,192,0.18);
-  transition: transform .15s ease;
+  transition: transform .15s ease, opacity .25s ease;
   overflow: hidden;
 }
 .sim-bubble:hover { transform: scale(1.03); text-decoration: none; }
+/* בעת מסך הסכמת עוגיות (fixed, bottom:0, z-index גבוה יותר) הבועה נבלעת מתחתיו — מוסתרת עד שהבאנר נסגר */
+body.cookie-banner-open .sim-bubble { opacity: 0; pointer-events: none; }
 .sim-bubble-icon { display: flex; position: relative; z-index: 1; flex-shrink: 0; }
 .sim-bubble-text { position: relative; z-index: 1; color: #06231e; font-weight: 700; font-size: 0.92rem; white-space: nowrap; }
 /* הברקה חולפת: קו אור עדין שחוצה את הקפסולה ואז נעצר — תופס עין בלי הבהוב מתמיד */
@@ -179,6 +181,7 @@ body.knowledge-article main .btn.ghost.cta-sim:hover {
     <span><a href="../accessibility.html">נגישות</a></span>
     <span><a href="../privacy.html">פרטיות</a></span>
     <span><button type="button" id="cookie-settings" class="footer-link-btn">הגדרות עוגיות</button></span>
+    <span><a href="../disclaimer.html">כתב ויתור</a></span>
     <span><a href="../sitemap.html">מפת אתר</a></span>
     <span><a href="../contact.html">צור קשר</a></span>
   </div>
