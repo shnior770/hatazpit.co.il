@@ -560,7 +560,7 @@ main.wide:has(.capsule-xl-row) { margin-top: -46px; position: relative; z-index:
   background: rgba(28,182,161,0.08);
   border-radius: 8px;
   padding: 14px 18px;
-  margin: 0 0 32px;
+  margin: 24px 0 32px;
   font-size: 0.9rem;
   color: var(--ink-soft);
 }
