@@ -239,6 +239,13 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
     return{tone:'open',kicker:'התמונה עדיין פתוחה',title:'אי אפשר לקבוע בלי בירור קצר נוסף',intro:'לא מצאנו כאן התאמה ברורה, אבל גם לא פסלנו כלום. לפעמים המסלול הנכון מסתתר בפרטים שלא שאלנו.'}}
   function roundRect(ctx,x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()}
   function wrapLines(ctx,text,maxWidth){const words=text.split(' ');const lines=[];let line='';for(const w of words){const test=line?line+' '+w:w;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line);return lines}
+  function downloadBlob(blob,filename){
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;link.download=filename;
+    document.body.appendChild(link);link.click();document.body.removeChild(link);
+    setTimeout(()=>URL.revokeObjectURL(url),4000);
+  }
   async function buildResultImage(r,d){
     if(document.fonts&&document.fonts.ready){try{await document.fonts.ready}catch(e){}}
     const W=1080,H=1350,M=80,R=W-M;
@@ -296,9 +303,9 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
   function render(){
     if(state.screen==='entry')main.innerHTML=`<div class="entry-screen screen-enter"><h1>יכול להיות שהארגון שלכם משאיר תמיכה ממשלתית על השולחן?</h1><p class="lead-copy">ענו על שבע שאלות קצרות וקבלו תמונת מצב ראשונית — על בסיס נתוני תמיכות אמיתיים לפי סעיף 3א.</p>${button('בואו נבדוק','start','←')}<p class="microcopy">ללא התחייבות · אין צורך במסמכים · זו אינה בדיקת זכאות</p></div>`;
     if(state.screen==='question'){const q=QUESTIONS[state.step];let choices='';if(q.key==='domain'){choices=`<div class="domain-grid">${Object.entries(DOMAINS).map(([key,d])=>`<button class="domain-option" data-value="${key}"><span class="domain-icon">${esc(d.icon)}</span><span>${esc(d.label)}</span></button>`).join('')}</div>`}else{choices=`<div class="options-list">${q.options.map(o=>`<button class="answer-option" data-value="${o[0]}"><span><strong>${esc(o[1])}</strong>${o[2]?`<small>${esc(o[2])}</small>`:''}</span><span class="option-arrow">←</span></button>`).join('')}</div>`}main.innerHTML=`<div class="question-screen screen-enter"><div class="progress-row"><span>שאלה ${state.step+1} מתוך ${QUESTIONS.length}</span><div class="progress-track"><div class="progress-value" style="width:${((state.step+1)/QUESTIONS.length)*100}%"></div></div></div><span class="question-eyebrow">${esc(q.eyebrow)}</span><h2>${esc(q.title)}</h2>${q.note?`<p class="question-note">${esc(q.note)}</p>`:''}${choices}${state.step>0?'<button class="back-button" id="back">חזרה לשאלה הקודמת</button>':''}</div>`}
-    if(state.screen==='result'){const r=getResult(),a=state.answers,d=DOMAINS[a.domain]||DOMAINS.other;const data=d.entities?`<div class="data-card"><div class="data-card-head"><span>מה קרה בתחום ${esc(d.label)} בפועל?</span></div><div class="metrics"><div><strong>${num(d.entities)}</strong><span>עמותות נתמכות</span></div><div><strong>${num(d.payments)}</strong><span>תשלומי תמיכה</span></div><div><strong>₪${num(d.median)}</strong><span>חציון לתשלום</span></div></div><p>אלה תשלומים שכבר קרו בעבר, דרך ${esc(d.ministry)}. הם לא אומרים כלום על הזכאות שלכם או על הסכום שתקבלו.</p></div>`:`<div class="data-card no-data"><strong>התחום שלכם לא נכנס יפה לקופסה אחת — וזה דווקא סימן טוב לבדיקה אנושית.</strong><p>קולות קוראים רבים חוצים תחומים ומשרדים, ולכן סיווג כללי עלול לפספס הזדמנות רלוונטית.</p></div>`;let reasons=[];if(['2to4','5plus'].includes(a.tenure))reasons.push('יש לארגון ותק — סימן בסיס שחוזר במסלולים רבים.');if(['never','unknown'].includes(a.history))reasons.push('לא מיציתם עד היום את ערוץ התמיכות באופן ברור.');if(a.history==='received')reasons.push('כבר הוכחתם יכולת לעבוד מול מסלול ממשלתי — עכשיו אפשר לבדוק הרחבה.');if(a.history==='applied')reasons.push('ניסיון הגשה קודם יכול לעזור לזהות במהירות מה השתנה ומה חסר.');if(['none','rarely','sometimes'].includes(a.monitoring))reasons.push('אין אצלכם מעקב רציף, ולכן קל לפספס חלונות הגשה קצרים.');if(a.monitoring==='professional')reasons.push('כבר יש לכם מעקב מקצועי; בדיקה נוספת יכולה להתמקד במסלולים משלימים.');if(d.entities)reasons.push('המאגר מציג פעילות ממשלתית מוכחת בתחום שבחרתם.');if(a.compliance==='yes')reasons.push('יש לכם אישור ניהול תקין תקף — תנאי סף שכבר עברתם ברוב המסלולים.');const complianceWarning=a.compliance==='no'?`<div class="data-card no-data"><strong>שימו לב: אין לכם כרגע אישור ניהול תקין תקף.</strong><p>ברוב מסלולי התמיכה זהו תנאי סף. אפשר וכדאי להמשיך ולבדוק בכל זאת, אבל שווה לטפל בזה במקביל — <a href="orderly-management.html">כל מה שצריך לדעת על ניהול תקין</a>.</p></div>`:'';main.innerHTML=`<div class="result-screen screen-enter"><span class="result-kicker ${r.tone}">${esc(r.kicker)}</span><h2>${esc(r.title)}</h2><p class="result-intro">${esc(r.intro)}</p>${data}${complianceWarning}<div class="reasons"><h3>למה שווה לבדוק?</h3><ul>${reasons.map(x=>`<li><span>✓</span>${esc(x)}</li>`).join('')}</ul></div>${button('בדקו מה עשוי להתאים לנו','lead','←')}<button type="button" class="secondary-button" id="share-result">שיתוף התוצאה בוואטסאפ</button><button class="restart-button" id="reset">התחל מחדש</button></div>`;track('support_check_result_tier',{tier:r.tone})}
-    if(state.screen==='lead')main.innerHTML=`<div class="lead-screen screen-enter"><button class="close-button" id="close" aria-label="חזרה לתוצאה">×</button><span class="pill">השלב הבא</span><h2>השאירו פרטים ונבדוק אילו מסלולים מתאימים לארגון שלכם</h2><p class="microcopy">בלי הבטחות לפני שרואים את התמונה המלאה.</p><div class="disclosure"><strong>גילוי נאות:</strong> יש לנו שיתוף פעולה עסקי עם 'משאבים - גיוס מענקים לעמותות' ומגיע לכם לדעת את זה. יחד עם זאת, ההמלצה כאן מבוססת על ניסיון אמיתי בשטח.</div><p>בלחיצה על שלח תיפתח תיבת הדואר האלקטרוני עם מייל מוכן לשליחה.</p><form id="lead-form"><label>שם מלא<input required name="name" autocomplete="name"></label><label>שם הארגון<input required name="organization" autocomplete="organization"></label><label>טלפון<input required name="phone" type="tel" autocomplete="tel"></label>${button('שלח בקשה','submit','←')}</form></div>`;
-    if(state.screen==='thanks')main.innerHTML=`<div class="thanks-screen screen-enter"><div class="thanks-mark">✓</div><h2>קיבלנו, תודה!</h2><p>נפתח עבורכם מייל מוכן עם הפרטים שמילאתם — פשוט לשלוח אותו, ונחזור אליכם בהקדם.</p><p class="mail-fallback">לא נפתחה תוכנית מייל אצלכם? אפשר לשלוח ידנית ל-<a href="${state.lastMailto||'mailto:hatazpit.office@gmail.com'}" id="mail-fallback-link">hatazpit.office@gmail.com</a><button type="button" class="copy-email-btn" id="copy-lead-email">העתק כתובת</button></p>${button('בדקו ארגון נוסף','reset')}</div>`;
+    if(state.screen==='result'){const r=getResult(),a=state.answers,d=DOMAINS[a.domain]||DOMAINS.other;const data=d.entities?`<div class="data-card"><div class="data-card-head"><span>מה קרה בתחום ${esc(d.label)} בפועל?</span></div><div class="metrics"><div><strong>${num(d.entities)}</strong><span>עמותות נתמכות</span></div><div><strong>${num(d.payments)}</strong><span>תשלומי תמיכה</span></div><div><strong>₪${num(d.median)}</strong><span>חציון לתשלום</span></div></div><p>אלה תשלומים שכבר קרו בעבר, דרך ${esc(d.ministry)}. הם לא אומרים כלום על הזכאות שלכם או על הסכום שתקבלו.</p></div>`:`<div class="data-card no-data"><strong>התחום שלכם לא נכנס יפה לקופסה אחת — וזה דווקא סימן טוב לבדיקה אנושית.</strong><p>קולות קוראים רבים חוצים תחומים ומשרדים, ולכן סיווג כללי עלול לפספס הזדמנות רלוונטית.</p></div>`;let reasons=[];if(['2to4','5plus'].includes(a.tenure))reasons.push('יש לארגון ותק — סימן בסיס שחוזר במסלולים רבים.');if(['never','unknown'].includes(a.history))reasons.push('לא מיציתם עד היום את ערוץ התמיכות באופן ברור.');if(a.history==='received')reasons.push('כבר הוכחתם יכולת לעבוד מול מסלול ממשלתי — עכשיו אפשר לבדוק הרחבה.');if(a.history==='applied')reasons.push('ניסיון הגשה קודם יכול לעזור לזהות במהירות מה השתנה ומה חסר.');if(['none','rarely','sometimes'].includes(a.monitoring))reasons.push('אין אצלכם מעקב רציף, ולכן קל לפספס חלונות הגשה קצרים.');if(a.monitoring==='professional')reasons.push('כבר יש לכם מעקב מקצועי; בדיקה נוספת יכולה להתמקד במסלולים משלימים.');if(d.entities)reasons.push('המאגר מציג פעילות ממשלתית מוכחת בתחום שבחרתם.');if(a.compliance==='yes')reasons.push('יש לכם אישור ניהול תקין תקף — תנאי סף שכבר עברתם ברוב המסלולים.');const complianceWarning=a.compliance==='no'?`<div class="data-card no-data"><strong>שימו לב: אין לכם כרגע אישור ניהול תקין תקף.</strong><p>ברוב מסלולי התמיכה זהו תנאי סף. אפשר וכדאי להמשיך ולבדוק בכל זאת, אבל שווה לטפל בזה במקביל — <a href="orderly-management.html">כל מה שצריך לדעת על ניהול תקין</a>.</p></div>`:'';main.innerHTML=`<div class="result-screen screen-enter"><span class="result-kicker ${r.tone}">${esc(r.kicker)}</span><h2>${esc(r.title)}</h2><p class="result-intro">${esc(r.intro)}</p>${data}${complianceWarning}<div class="reasons"><h3>למה שווה לבדוק?</h3><ul>${reasons.map(x=>`<li><span>✓</span>${esc(x)}</li>`).join('')}</ul></div>${button('בדקו מה עשוי להתאים לנו','lead','←')}<button type="button" class="secondary-button" id="share-result">שיתוף התוצאה בוואטסאפ</button><button type="button" class="secondary-button" id="save-result">שמירת התמונה</button><button class="restart-button" id="reset">התחל מחדש</button></div>`;track('support_check_result_tier',{tier:r.tone})}
+    if(state.screen==='lead')main.innerHTML=`<div class="lead-screen screen-enter"><button class="close-button" id="close" aria-label="חזרה לתוצאה">×</button><span class="pill">השלב הבא</span><h2>השאירו פרטים ונבדוק אילו מסלולים מתאימים לארגון שלכם</h2><p class="microcopy">בלי הבטחות לפני שרואים את התמונה המלאה.</p><div class="disclosure"><strong>גילוי נאות:</strong> יש לנו שיתוף פעולה עסקי עם 'משאבים - גיוס מענקים לעמותות' ומגיע לכם לדעת את זה. יחד עם זאת, ההמלצה כאן מבוססת על ניסיון אמיתי בשטח.</div><p>בלחיצה על שלח הפנייה נשלחת אלינו ישירות.</p><form id="lead-form"><label>שם מלא<input required name="name" autocomplete="name"></label><label>שם הארגון<input required name="organization" autocomplete="organization"></label><label>טלפון<input required name="phone" type="tel" autocomplete="tel"></label><div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>${button('שלח בקשה','submit','←')}</form></div>`;
+    if(state.screen==='thanks')main.innerHTML=`<div class="thanks-screen screen-enter"><div class="thanks-mark">✓</div><h2>קיבלנו, תודה!</h2><p>הפנייה נשלחה אלינו ישירות, ונחזור אליכם בהקדם.</p><p class="mail-fallback">אם לא נשמע מאיתנו תוך יום עסקים, אפשר גם לשלוח ידנית ל-<a href="${state.lastMailto||'mailto:hatazpit.office@gmail.com'}" id="mail-fallback-link">hatazpit.office@gmail.com</a><button type="button" class="copy-email-btn" id="copy-lead-email">העתק כתובת</button></p>${button('בדקו ארגון נוסף','reset')}</div>`;
     contextPanel.classList.toggle('hide-on-mobile', state.screen==='question');
     bind();
   }
@@ -311,9 +318,9 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
     document.getElementById('lead-form')?.addEventListener('submit',function(e){
       e.preventDefault();
       const submitBtn=document.getElementById('submit');
-      if(submitBtn) submitBtn.disabled=true;
+      if(submitBtn){submitBtn.disabled=true;submitBtn.textContent='שולח…';}
       const fd=new FormData(e.target);
-      const name=fd.get('name'), organization=fd.get('organization'), phone=fd.get('phone');
+      const name=fd.get('name'), organization=fd.get('organization'), phone=fd.get('phone'), website=fd.get('website');
       const a=state.answers, r=getResult(), d=DOMAINS[a.domain]||DOMAINS.other;
       const bodyLines=[
         'שם: '+name,
@@ -331,14 +338,33 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
         '',
         'הגיע מ"בדיקת הזדמנות תמיכה" באתר התצפית'
       ];
+      const details=bodyLines.join('\n');
       const mailto='mailto:hatazpit.office@gmail.com'
         +'?subject='+encodeURIComponent('בדיקת הזדמנות תמיכה — '+organization)
-        +'&body='+encodeURIComponent(bodyLines.join('\n'));
+        +'&body='+encodeURIComponent(details);
       track('support_check_lead_submitted',{tier:r.tone,domain:a.domain});
       state.lastMailto=mailto;
-      window.location.href=mailto;
-      state.screen='thanks';render();
-      document.querySelector('.simulator-shell')?.scrollIntoView({behavior:'smooth',block:'start'});
+      const gfd=new FormData();
+      gfd.append('formType','simulator');
+      gfd.append('simulatorName','בדיקת הזדמנות תמיכה');
+      gfd.append('name',name);
+      gfd.append('organization',organization);
+      gfd.append('phone',phone);
+      gfd.append('fitLevel',r.kicker);
+      gfd.append('details',details);
+      gfd.append('website',website);
+      fetch('https://script.google.com/macros/s/AKfycbxAhshCkE5dELP69wMS2P9Aqk8vbm2rEzoX9sWcO2JuHwSwZL2PnTdKlDQFN7kAd5JD/exec',{method:'POST',body:gfd})
+        .then(res=>res.json())
+        .then(data=>{
+          if(data.result!=='success') throw new Error(data.message||'error');
+          state.screen='thanks';render();
+          document.querySelector('.simulator-shell')?.scrollIntoView({behavior:'smooth',block:'start'});
+        })
+        .catch(()=>{
+          window.location.href=mailto;
+          state.screen='thanks';render();
+          document.querySelector('.simulator-shell')?.scrollIntoView({behavior:'smooth',block:'start'});
+        });
     });
     document.getElementById('reset')?.addEventListener('click',()=>{state.screen='entry';state.step=0;state.answers={};render()});
     document.getElementById('share-result')?.addEventListener('click',async()=>{
@@ -354,13 +380,22 @@ footer.site .wrap{padding:12px 24px;color:var(--ink-soft);font-size:.72rem;opaci
           await navigator.share({files:[file],title:'התצפית — בדיקת הזדמנות תמיכה',text:r.title});
           track('support_check_result_shared',{method:'web-share'});
         }else{
-          const url=URL.createObjectURL(blob);
-          const link=document.createElement('a');
-          link.href=url;link.download='hatazpit-support-check.png';
-          document.body.appendChild(link);link.click();document.body.removeChild(link);
-          setTimeout(()=>URL.revokeObjectURL(url),4000);
+          downloadBlob(blob,'hatazpit-support-check.png');
           track('support_check_result_shared',{method:'download'});
         }
+      }catch(e){}
+      btn.disabled=false;btn.textContent=original;
+    });
+    document.getElementById('save-result')?.addEventListener('click',async()=>{
+      const btn=document.getElementById('save-result');
+      const original=btn.textContent;
+      btn.disabled=true;btn.textContent='מכין תמונה…';
+      try{
+        const a=state.answers,r=getResult(),d=DOMAINS[a.domain]||DOMAINS.other;
+        const blob=await buildResultImage(r,d);
+        if(!blob) throw new Error('no-blob');
+        downloadBlob(blob,'hatazpit-support-check.png');
+        track('support_check_result_shared',{method:'save'});
       }catch(e){}
       btn.disabled=false;btn.textContent=original;
     });

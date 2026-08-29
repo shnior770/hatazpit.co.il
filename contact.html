@@ -75,11 +75,19 @@
         <label for="cf-message">תוכן ההודעה</label>
         <textarea id="cf-message" placeholder="איך אפשר לעזור?" required></textarea>
       </div>
-      <p class="contact-note">בלחיצה תיפתח את תיבת ה-email שלכם עם ההודעה מוכנה לשליחה — אין כאן שרת שאוגר את הנתונים.</p>
+      <div style="position:absolute;left:-9999px;top:-9999px" aria-hidden="true">
+        <label for="cf-website">Website</label>
+        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <p class="contact-note">בלחיצה על שליחה הפנייה נשלחת אלינו ישירות.</p>
       <button type="submit" class="btn primary contact-submit">שליחת הפנייה</button>
-      <p class="mail-fallback" id="mail-fallback" hidden>לא נפתחה תוכנית מייל? אפשר לשלוח ידנית ל-<a href="mailto:hatazpit.office@gmail.com" id="mail-fallback-link">hatazpit.office@gmail.com</a></p>
+      <p class="mail-fallback" id="mail-fallback" hidden>לא הצלחנו לשלוח? אפשר לשלוח ידנית ל-<a href="mailto:hatazpit.office@gmail.com" id="mail-fallback-link">hatazpit.office@gmail.com</a></p>
     </div>
   </form>
+  <div id="contact-thanks" class="contact-thanks" hidden>
+    <h2>תודה, קיבלנו את הפנייה!</h2>
+    <p class="lede">נחזור אליכם בהקדם. אם זה דחוף, אפשר גם דרך <a href="https://wa.me/972503833809" class="contact-whatsapp" target="_blank" rel="noopener">וואטסאפ</a>.</p>
+  </div>
 </main>
 
 <a class="whatsapp-float" href="https://wa.me/972503833809" target="_blank" rel="noopener" aria-label="פתיחת שיחה בוואטסאפ">
@@ -102,6 +110,8 @@
 <script>
 document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
+  var form = e.target;
+  var submitBtn = form.querySelector('.contact-submit');
   var name = document.getElementById('cf-name').value;
   var email = document.getElementById('cf-email').value;
   var subject = document.getElementById('cf-subject').value;
@@ -110,11 +120,35 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   var mailto = 'mailto:hatazpit.office@gmail.com'
     + '?subject=' + encodeURIComponent(subject)
     + '&body=' + encodeURIComponent(body);
-  document.getElementById('mail-fallback-link').href = mailto;
-  var fallback = document.getElementById('mail-fallback');
-  fallback.hidden = false;
-  fallback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  window.location.href = mailto;
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'שולח…';
+
+  var fd = new FormData();
+  fd.append('formType', 'contact');
+  fd.append('name', name);
+  fd.append('email', email);
+  fd.append('subject', subject);
+  fd.append('message', message);
+  fd.append('website', document.getElementById('cf-website').value);
+
+  fetch('https://script.google.com/macros/s/AKfycbxAhshCkE5dELP69wMS2P9Aqk8vbm2rEzoX9sWcO2JuHwSwZL2PnTdKlDQFN7kAd5JD/exec', { method: 'POST', body: fd })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.result !== 'success') throw new Error(data.message || 'error');
+      form.hidden = true;
+      document.getElementById('contact-thanks').hidden = false;
+      document.getElementById('contact-thanks').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    })
+    .catch(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'שליחת הפנייה';
+      document.getElementById('mail-fallback-link').href = mailto;
+      var fallback = document.getElementById('mail-fallback');
+      fallback.hidden = false;
+      fallback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      window.location.href = mailto;
+    });
 });
 
 (function () {
